@@ -18,10 +18,13 @@ export const pokedexSlice = createSlice({
             state.pokedex = payload;
             state.isLoading = false;
         },
+        onSetActivePokemon: (state, {payload}) => {
+            state.activePokemon = payload
+        }
             
     }
 })
 
-export const {startLoadingPokedex, setPokedex} = pokedexSlice.actions;
+export const {startLoadingPokedex, setPokedex, onSetActivePokemon} = pokedexSlice.actions;
 
 export default pokedexSlice.reducer;
