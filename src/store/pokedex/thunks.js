@@ -8,3 +8,4 @@ export const getPokedex = () => {
         dispatch(setPokedex(data.results))
     }
 }
+

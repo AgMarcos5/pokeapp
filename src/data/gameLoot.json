@@ -1,0 +1,28 @@
+{
+    "0" : {},
+    "2" : {
+        "pokeballs" : 1
+    },
+    "5" : {
+        "pokeballs" : 3,
+        "berries" : 4
+    }, 
+    "10" : {
+        "pokeballs": 5,
+        "superballs": 3,
+        "berries": 4
+    },
+    "15" : {
+        "pokeballs": 7,
+        "superballs": 5,
+        "ultraballs": 2,
+        "berries": 6
+    },
+    "20" : {
+        "pokeballs": 7,
+        "superballs": 5,
+        "ultraballs": 2,
+        "masterball": 1,
+        "berries": 6
+    }
+}

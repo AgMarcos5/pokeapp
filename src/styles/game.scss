@@ -1,0 +1,24 @@
+.gameContainer{
+    text-align: center;
+
+    .pokemonImage{
+        img{
+            pointer-events: none;
+            user-select: none;
+            max-width: 450px;
+            filter: brightness(0) opacity(0.9);
+            transform: scale(.9);
+            &.show{
+                transition: 1s;
+                filter: none;
+                transform: none;
+            }
+        }
+    }
+
+    .bag{
+        &.disable{
+            pointer-events: none;
+        }
+    }
+}

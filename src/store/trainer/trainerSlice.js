@@ -5,10 +5,10 @@ const initialState = {
     pokemons: [],
     bag: {
         pokeballs: 5,
-        superballs: 0,
-        ultraballs: 0,
-        masterballs: 0,
-        berries: 0,
+        superballs: 1,
+        ultraballs: 1,
+        masterballs: 1,
+        berries: 1,
     }
 }
 
@@ -34,12 +34,15 @@ export const trainerSlice = createSlice({
             state.pokemons.push(payload);
             state.isSaving = false;
         },
-        updateBag: (state, {payload}) => {
+        onUseItem: (state, {payload}) => {
             const {itemName, amount} = payload;
             state.bag[itemName] += amount;
             state.isSaving = false;
         },     
-        updatePokemon: (state, {payload}) => {
+        onUpdateBag: (state, {payload}) => {
+            state.bag = payload;
+        },
+        onUpdatePokemon: (state, {payload}) => {
             state.pokemons = state.pokemons.map ( pkm => {
                 if(pkm.id === payload.id) return payload;
                 return pkm;
@@ -49,6 +52,6 @@ export const trainerSlice = createSlice({
     }
 })
 
-export const { startSavingTrainer, onAddPokemon, updateBag, updatePokemon} = trainerSlice.actions;
+export const { startSavingTrainer, onAddPokemon, onUseItem, onUpdateBag, onUpdatePokemon} = trainerSlice.actions;
 
 export default trainerSlice.reducer;

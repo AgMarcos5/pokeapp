@@ -1,13 +1,19 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { Provider } from 'react-redux'
-import PokeApp from './PokeApp'
-import { store } from './store/store'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import { AppLayout } from "./layout/AppLayout";
+import PokeApp from "./PokeApp";
+import { store } from "./store/store";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+import "./styles/global.scss";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
     <Provider store={store}>
-      <PokeApp />
+      <BrowserRouter>
+        <AppLayout>
+          <PokeApp />
+        </AppLayout>
+      </BrowserRouter>
     </Provider>
-  </React.StrictMode>
-)
+);

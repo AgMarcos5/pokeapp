@@ -1,15 +1,12 @@
-import { usePokedex } from "./hooks"
-
-
+import { AppRouter } from "./router/AppRouter"
 
 function PokeApp() {
 
-  const {pokedex,isLoading,activePokemon} = usePokedex();
 
   return (
-    <div className="App">
-      PokeAPP
-    </div>
+    <>
+      <AppRouter/>
+    </>
   )
 }
 

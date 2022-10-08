@@ -1,1 +1,5 @@
 export * from './usePokedex'
+export * from './useAuth'
+export * from './useForm'
+export * from './useTrainer'
+export * from './useCounter'
