@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { onUpdateBag, onUseItem } from "../store/trainer/trainerSlice";
+import { onAddPokemon, onUpdateBag, onUseItem } from "../store/trainer/trainerSlice";
 
 export const useTrainer = () => {
     const {isSaving, pokemons, bag} = useSelector(state => state.trainer)
@@ -8,7 +8,6 @@ export const useTrainer = () => {
     // Consumir item del inventario
     const useItem = (itemName) => {
         if(!bag[itemName]) return;
-        console.log(itemName, " lanzada");
         dispatch(onUseItem({itemName, amount: -1}))
         return true;
     }
@@ -16,15 +15,33 @@ export const useTrainer = () => {
     // Actualizar mochila con el loot
     const updateBag = (loot) => {
         const auxBag = {...bag}
-      console.log("Mochila anterior", bag)
       for (const item in loot) {
           const element = loot[item];
           auxBag[item] += element;
         
       }
-      console.log("Mochila actualizada", auxBag)
       dispatch(onUpdateBag(auxBag));
     }
+
+    // Agregar pokemon descubierto
+    const addPokemon = (pokemon) => {
+      const first_appearance = new Date();
+      const auxPokemon = {
+        ...pokemon,
+        first_appearance,
+        captured: false,
+        captured_date: null,
+        captured_count: 0,
+      }
+      dispatch(onAddPokemon(auxPokemon))
+    }
+
+    // Agregar pokemon capturado
+    const capturePokemon = (pokemon) => {
+      const {id} = pokemon;
+
+    }
+
 
     return {
         //PROPS
@@ -35,6 +52,8 @@ export const useTrainer = () => {
         //METHODS
         updateBag,
         useItem,
+        addPokemon,
+        capturePokemon,
     }
 
     

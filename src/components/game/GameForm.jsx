@@ -15,7 +15,7 @@ const compareStrings = (str1, str2) => {
     return str1.replace(/[^a-zA-Z0-9 ]/g, '').toUpperCase() === str2.replace(/[^a-zA-Z0-9 ]/g, '').toUpperCase()
 }
 
-export const GameForm = ({pokemon, guessPokemon, endGame, nextPokemon}) => {
+export const GameForm = ({disable, pokemon, guessPokemon, endGame, nextPokemon}) => {
 
     const {formState,isFormValid,pokemonName,pokemonNameValid,onInputChange} = useForm(formData,formValidations);
     
@@ -23,7 +23,7 @@ export const GameForm = ({pokemon, guessPokemon, endGame, nextPokemon}) => {
 
     const onFormSubmit = (event) => {
         event.preventDefault();
-        if(formSubmited) {
+        if(formSubmited || disable) {
             nextPokemon();
             setFormSubmited(false)
         }
@@ -31,7 +31,6 @@ export const GameForm = ({pokemon, guessPokemon, endGame, nextPokemon}) => {
             setFormSubmited(true);
             if(compareStrings(pokemonName,pokemon.name))
             {
-                console.log("adivinaste")
                 guessPokemon();
             }
             else{

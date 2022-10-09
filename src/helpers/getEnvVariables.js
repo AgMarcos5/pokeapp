@@ -1,5 +1,5 @@
 export const getEnvVariables = () => {
-    import.meta.env;
+    import.meta.env.MODE;
 
     return {
         ...import.meta.env

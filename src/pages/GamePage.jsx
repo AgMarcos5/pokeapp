@@ -26,27 +26,30 @@ export const GamePage = () => {
   const [exp, setExp] = useState(0);
   const [capture, setCapture] = useState(false);
 
-  const {updateBag, useItem} = useTrainer()
+  const {updateBag, useItem, capturePokemon, addPokemon} = useTrainer()
 
 
   useEffect(() => {
     const storagePokemon = JSON.parse(localStorage.getItem("pkmGame"));
     if (storagePokemon) {
-      setPokemon(storagePokemon);
-      setExp(storagePokemon.base_experience)
+      setPokemon(storagePokemon.pkm);
+      setShowPokemon(storagePokemon.show)
+      setExp(storagePokemon.pkm.base_experience)
       setIsLoading(false);
     } else {
       getRandomPokemon().then((pkm) => {
         setPokemon(pkm);
         setIsLoading(false);
-        localStorage.setItem("pkmGame", JSON.stringify(pkm));
+        localStorage.setItem("pkmGame", JSON.stringify({pkm,show:false}));
       });
     }
   }, []);
 
   const handleGuessPokemon = () => {
     setShowPokemon(true);
+    localStorage.setItem("pkmGame", JSON.stringify({pkm: pokemon,show:true}));
     incrementCaptureCombo();
+    addPokemon(pokemon);
   }
 
   const handleNextPokemon = () => {
@@ -57,12 +60,11 @@ export const GamePage = () => {
       setPokemon(pkm);
       setExp(pkm.base_experience);
       setIsLoading(false);
-      localStorage.setItem("pkmGame", JSON.stringify(pkm));
+      localStorage.setItem("pkmGame", JSON.stringify({pkm,show:false}));
     });
   }
 
   const handleEndGame = () => {
-    console.log("End game")
     if(captureCombo > 0)
     {
       const loot = getLoot(captureCombo);
@@ -79,8 +81,8 @@ export const GamePage = () => {
 
       // Capturar pokemon
       if(aux_exp <= 0){
-        console.log("Pokemon capturado")
         setCapture(true);
+
       }
     }
   }
@@ -102,6 +104,7 @@ export const GamePage = () => {
         <>
           <PokemonImage showPokemon={showPokemon} src={pokemon.image} />
           <GameForm 
+            disable={showPokemon}
             pokemon={pokemon} 
             guessPokemon={handleGuessPokemon}
             endGame={handleEndGame}

@@ -9,4 +9,7 @@ export const store = configureStore({
     pokedex: pokedexSlice,
     trainer: trainerSlice,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    serializableCheck: false
+  })
 })

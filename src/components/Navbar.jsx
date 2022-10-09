@@ -1,11 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth'
+import { Login } from './auth/Login';
+import { Register } from './auth/Register';
 
 export const Navbar = () => {
-    const {status, user} = useAuth();
+    const {status, user, startLogout} = useAuth();
 
   return (
+    <>
     <nav>
         <ul>
             <li><Link to="/">Home</Link></li>
@@ -14,7 +17,10 @@ export const Navbar = () => {
             {
                 (status === 'authenticated')
                 ? (
-                    <Link to="/profile"><h3>Temdi5</h3></Link>
+                    <>
+                        <Link to="/profile"><h3>{user.displayName}</h3></Link>
+                        <button onClick={startLogout}>desconectar</button>
+                    </>
                 ):(
                 <>
                     <li>Login</li>
@@ -24,5 +30,16 @@ export const Navbar = () => {
             }
         </ul>
     </nav>
+    
+    {
+        (status === 'not-authenticated') && (
+            <>
+                <Login/>
+                <Register/>
+            </>
+        )
+    }
+
+    </>
   )
 }

@@ -4,9 +4,9 @@ import gameLoot from "../data/gameLoot.json"
 export const getRandomPokemon = async () => {
     const id = Math.floor(Math.random() * 151) + 1;
     const { data } = await pokeApi.get(`/pokemon/${id}`);
-    console.log(data.base_experience)
     return {
       name: data.name,
+      id: data.id,
       image: data.sprites.other.home["front_default"],
       base_experience: data.base_experience,
     };

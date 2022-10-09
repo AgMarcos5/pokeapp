@@ -16,6 +16,8 @@ const initialState = {
 pokemon = {
     name: 'nombre',
     id: 1,
+    base_experience: 123,
+    image: 123,
     first_appearance: 123456,
     captured: false,
     captured_date: 123456,
