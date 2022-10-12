@@ -12,25 +12,16 @@ const initialState = {
     }
 }
 
-/*
-pokemon = {
-    name: 'nombre',
-    id: 1,
-    base_experience: 123,
-    image: 123,
-    first_appearance: 123456,
-    captured: false,
-    captured_date: 123456,
-    captured_count: 0,
-}
-*/
-
 export const trainerSlice = createSlice({
     name: 'trainer',
     initialState,
     reducers: {
         startSavingTrainer: (state) => {
             state.isSaving = true;
+        },
+        onLoadTrainer: (state, {payload}) => {
+            state.pokemons = payload.pokemons;
+            state.bag = payload.bag;
         },
         onAddPokemon: (state, {payload}) => {
             state.pokemons.push(payload);
@@ -54,6 +45,6 @@ export const trainerSlice = createSlice({
     }
 })
 
-export const { startSavingTrainer, onAddPokemon, onUseItem, onUpdateBag, onUpdatePokemon} = trainerSlice.actions;
+export const { startSavingTrainer, onLoadTrainer, onAddPokemon, onUseItem, onUpdateBag, onUpdatePokemon} = trainerSlice.actions;
 
 export default trainerSlice.reducer;

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 import { GamePage } from '../pages/GamePage'
@@ -8,7 +8,12 @@ import { ProfilePage } from '../pages/ProfilePage'
 
 export const AppRouter = () => {
 
-  const {status} = useAuth();
+  const {status, checkAuth} = useAuth();
+
+  useEffect(() => {
+    checkAuth();
+  }, [])
+  
 
   return (
     <Routes>

@@ -1,12 +1,26 @@
+import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux"
+import { FirebaseAuth } from "../firebase/config";
 import { errorsFirebase } from "../firebase/errors";
 import { loginWithEmailPassword, logoutFirebase, registerUserWithEmail, signInWithGoogle } from "../firebase/providers";
 import { onChecking, onLogin, onLogout } from "../store/auth/authSlice";
+import { startLoadingTrainerInfo } from "../store/trainer/thunks";
+
 
 export const useAuth = () => {
+    const {status, errorMessage, user} = useSelector(state => state.auth);
     const dispatch = useDispatch();
 
-    const {status, errorMessage, user} = useSelector(state => state.auth);
+    const checkAuth = () => {
+        dispatch(onChecking());
+        onAuthStateChanged(FirebaseAuth, async (user) => {
+            if(!user) return dispatch(onLogout());
+            const {uid, email, displayName, photoURL} = user;
+            // Datos entrenador desde Firebase
+            dispatch(onLogin({uid, email, displayName, photoURL}));
+            dispatch(startLoadingTrainerInfo())
+        })
+    }
 
     const startLogin = async ({email,password}) => {
         dispatch(onChecking());
@@ -57,6 +71,7 @@ export const useAuth = () => {
         errorMessage,
         user,
 
+        checkAuth,
         startLogin,
         startGoogleLogin,
         startRegister,
