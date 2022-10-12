@@ -28,7 +28,14 @@ export const GamePage = () => {
 
   const {updateBag, useItem, capturePokemon, addPokemon} = useTrainer()
 
+  useEffect(() => {
+    getRandomPokemon().then((pkm) => {
+      setPokemon(pkm);
+      setIsLoading(false);
+    });
+  }, [])
 
+  /*
   useEffect(() => {
     const storagePokemon = JSON.parse(localStorage.getItem("pkmGame"));
     if (storagePokemon) {
@@ -44,10 +51,11 @@ export const GamePage = () => {
       });
     }
   }, []);
+  */
 
   const handleGuessPokemon = () => {
     setShowPokemon(true);
-    localStorage.setItem("pkmGame", JSON.stringify({pkm: pokemon,show:true}));
+    //localStorage.setItem("pkmGame", JSON.stringify({pkm: pokemon,show:true}));
     incrementCaptureCombo();
     addPokemon(pokemon);
   }
@@ -60,7 +68,7 @@ export const GamePage = () => {
       setPokemon(pkm);
       setExp(pkm.base_experience);
       setIsLoading(false);
-      localStorage.setItem("pkmGame", JSON.stringify({pkm,show:false}));
+      //localStorage.setItem("pkmGame", JSON.stringify({pkm,show:false}));
     });
   }
 
@@ -82,7 +90,7 @@ export const GamePage = () => {
       // Capturar pokemon
       if(aux_exp <= 0){
         setCapture(true);
-
+        capturePokemon(pokemon);
       }
     }
   }

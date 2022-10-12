@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
+import { CheckingAuth } from '../components/auth/CheckingAuth'
 import { useAuth } from '../hooks/useAuth'
 import { GamePage } from '../pages/GamePage'
 import { IndexPage } from '../pages/IndexPage'
@@ -14,20 +15,29 @@ export const AppRouter = () => {
     checkAuth();
   }, [])
   
+  if(status === 'checking') return <CheckingAuth/>
 
+  
   return (
     <Routes>
         {
-          (status === 'authenticated') && (
+          (status === 'authenticated') ? (
             <>
             <Route path='/play' element={<GamePage/>}/>
             <Route path='/pokedex' element={<PokedexPage/>} />
             <Route path='/profile' element={<ProfilePage/>}/>
+            <Route path='/*' element={<Navigate to="/"/>}/>
+            </>
+          ) :
+          (
+            <>
+            <Route path='/' element={<IndexPage/>}/>
+            <Route path='/*' element={<Navigate to="/"/>}/>
             </>
           )
         }
         <Route path='/' element={<IndexPage/>}/>
-        <Route path='/*' element={<Navigate to="/"/>}/>
     </Routes>
   )
+  
 }

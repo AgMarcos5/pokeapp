@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { startSaveTrainerInfo } from "../store/trainer/thunks";
-import { onAddPokemon, onUpdateBag, onUseItem } from "../store/trainer/trainerSlice";
+import { onAddPokemon, onUpdateBag, onUpdatePokemon, onUseItem } from "../store/trainer/trainerSlice";
 
 
 export const useTrainer = () => {
@@ -30,27 +30,32 @@ export const useTrainer = () => {
 
     // Agregar pokemon descubierto
     const addPokemon = (pokemon) => {
-      const first_appearance = new Date().getTime();
-      const auxPokemon = {
-        ...pokemon,
-        first_appearance,
-        captured: false,
-        captured_date: null,
-        captured_count: 0,
+      if(!pokemons.some(pkm => pkm.id === pokemon.id)){
+        const first_appearance = new Date().getTime();
+        const auxPokemon = {
+          ...pokemon,
+          first_appearance,
+          captured: false,
+          captured_date: null,
+          captured_count: 0,
+        }
+        dispatch(onAddPokemon(auxPokemon));
+        dispatch(startSaveTrainerInfo("pokemons"));
       }
-      dispatch(onAddPokemon(auxPokemon));
-      dispatch(startSaveTrainerInfo("pokemons"));
     }
 
     // Agregar pokemon capturado
     const capturePokemon = (pokemon) => {
-      const auxPokemon = {
-        ...pokemon,
-        
-      }
-      dispatch(onUpdatePokemon(pokemon))
-
+      const captured_date = new Date().getTime();
+      const auxPokemon = {...pokemons.find( pkm => pkm.id === pokemon.id)}
+      if(!auxPokemon.captured_date)
+        auxPokemon.captured_date = captured_date;      
+      auxPokemon.captured_count += 1;
+      dispatch(onUpdatePokemon(auxPokemon));
+      dispatch(startSaveTrainerInfo("pokemons"));
     }
+
+    
 
 
     return {
