@@ -20,7 +20,7 @@ export const GamePage = () => {
   const [showPokemon, setShowPokemon] = useState(false);
 
 
-  const {counter: captureCombo, increment: incrementCaptureCombo , reset: resetCaptureCombo} = useCounter(0);
+  const {counter: captureCombo, increment: incrementCaptureCombo , reset: resetCaptureCombo, setValue: setCombo} = useCounter(0);
 
   // Experiencia del pokemon, al llegar a 0 es capturable
   const [exp, setExp] = useState(0);
@@ -28,30 +28,25 @@ export const GamePage = () => {
 
   const {updateBag, useItem, capturePokemon, addPokemon} = useTrainer()
 
-  useEffect(() => {
-    getRandomPokemon().then((pkm) => {
-      setPokemon(pkm);
-      setIsLoading(false);
-    });
-  }, [])
 
-  /*
   useEffect(() => {
     const storagePokemon = JSON.parse(localStorage.getItem("pkmGame"));
     if (storagePokemon) {
       setPokemon(storagePokemon.pkm);
-      setShowPokemon(storagePokemon.show)
       setExp(storagePokemon.pkm.base_experience)
+      setCombo(storagePokemon.combo)
       setIsLoading(false);
     } else {
       getRandomPokemon().then((pkm) => {
         setPokemon(pkm);
+        setExp(pkm.base_experience);
         setIsLoading(false);
-        localStorage.setItem("pkmGame", JSON.stringify({pkm,show:false}));
+        localStorage.setItem("pkmGame", JSON.stringify({pkm, combo: captureCombo}));
       });
     }
-  }, []);
-  */
+  }, [])
+  
+
 
   const handleGuessPokemon = () => {
     setShowPokemon(true);
@@ -68,7 +63,7 @@ export const GamePage = () => {
       setPokemon(pkm);
       setExp(pkm.base_experience);
       setIsLoading(false);
-      //localStorage.setItem("pkmGame", JSON.stringify({pkm,show:false}));
+      localStorage.setItem("pkmGame", JSON.stringify({pkm,combo: captureCombo}));
     });
   }
 

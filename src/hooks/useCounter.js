@@ -15,10 +15,15 @@ export const useCounter = (initialValue = 0) => {
         setCounter(initialValue)
     }
 
+    const setValue = (value) => {
+        setCounter(value)
+    }
+
     return {
         counter,
         increment,
         decrement,
         reset,
+        setValue,
     }
 }
