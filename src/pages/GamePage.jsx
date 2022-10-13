@@ -56,14 +56,19 @@ export const GamePage = () => {
   }
 
   const handleNextPokemon = () => {
-    if(!showPokemon)  resetCaptureCombo();
     getRandomPokemon().then((pkm) => {
       setCapture(false);
       setShowPokemon(false);
       setPokemon(pkm);
       setExp(pkm.base_experience);
       setIsLoading(false);
-      localStorage.setItem("pkmGame", JSON.stringify({pkm,combo: captureCombo}));
+      if(showPokemon){
+        localStorage.setItem("pkmGame", JSON.stringify({pkm,combo: captureCombo}));
+      }
+      else {
+        resetCaptureCombo();        
+        localStorage.setItem("pkmGame", JSON.stringify({pkm,combo: 0}));
+      }
     });
   }
 
