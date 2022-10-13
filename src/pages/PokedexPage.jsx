@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Pagination } from '../components/pokedex/Pagination';
 import { PokemonInfo } from '../components/pokedex/PokemonInfo';
 import { PokemonList } from '../components/pokedex/PokemonList';
 import { Search } from '../components/pokedex/Search';
+import { Sort } from '../components/pokedex/Sort';
 import { getPokemonData } from '../helpers/pokedex';
 import { useCounter, usePokedex, useTrainer } from '../hooks'
 import '../styles/pokedex.scss'
@@ -17,10 +18,8 @@ export const PokedexPage = () => {
   const {isLoading,pokedex,activePokemon, setActivePokemon, startPokedex,updatePokedex} = usePokedex();
   const {pokemons} = useTrainer()
   
-  const [pokemonList, setPokemonList] = useState(null)
+  const [pokemonList, setPokemonList] = useState([])
   
-  // ORDENAR
-  const [sort, setSort] = useState(sortPokemons[0])
 
   // PAGINACION
   const {counter: page, decrement: prevPage ,increment: nextPage, reset: resetPage} = useCounter(1)
@@ -37,6 +36,31 @@ export const PokedexPage = () => {
       setPokemonList(pokedex);
     }
   }
+
+  
+  // ORDENAR
+
+  const compareStatus = (a,b) => {
+    const statusValue = (val) => {
+      switch(val) {
+        case 'captured' : return 2;
+        case 'discovered' : return 1;
+        case 'undiscovered' : return 0;
+      }
+    }
+    return statusValue(b.status) - statusValue(a.status);
+  }
+
+  const [sort, setSort] = useState(sortPokemons[1])
+
+  const sortedPokemons = useMemo( () => {
+    switch(sort) {
+      case sortPokemons[0] : return [...pokemonList]?.sort((a,b) => a.id - b.id);
+      case sortPokemons[1] : return [...pokemonList]?.sort(compareStatus);
+      default: return pokemonList;
+    }
+  }, [pokemonList,sort])
+
 
 
   useEffect(() => {
@@ -66,6 +90,7 @@ export const PokedexPage = () => {
       {pokemonList?.length > 0 ? (
         <>
           <div>
+            <Sort setSort={setSort}/>
             <Pagination
               page={page}
               lastPage={lastPage}
@@ -74,7 +99,7 @@ export const PokedexPage = () => {
             />
           </div>
           <PokemonList
-            pokedex={pokemonList}
+            pokedex={sortedPokemons}
             page={page}
             maxPokemons={maxPokemons}
             setActivePokemon={setActivePokemon}
