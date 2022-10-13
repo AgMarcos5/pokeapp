@@ -1,21 +1,14 @@
 
+
 import { useDispatch, useSelector } from 'react-redux'
 import { pokeApi } from '../api/pokeApi';
 import { getPokemonData } from '../helpers/pokedex';
 import { onSetActivePokemon, setPokedex, startLoadingPokedex } from '../store/pokedex/pokedexSlice';
-import { getPokedex } from '../store/pokedex/thunks';
 
 export const usePokedex = () => {
     const {isLoading, pokedex, activePokemon} = useSelector(state => state.pokedex)
     const {pokemons} = useSelector(state => state.trainer)
-    
     const dispatch = useDispatch();
-   
-    /*
-    const startPokedex = () => {
-        dispatch(getPokedex())
-    }
-    */
 
     const startPokedex = async () => {
         dispatch(startLoadingPokedex);
@@ -25,9 +18,35 @@ export const usePokedex = () => {
             return await getPokemonData(pokemon.name)
           })
         const results = await Promise.all(promises);
-        console.log(results)
-        console.log(pokemons)
         dispatch(setPokedex(results))
+    }
+
+    const updatePokedex = () => {
+        if(pokemons.length){
+            dispatch(startLoadingPokedex);
+            
+            const auxPokedex = pokedex.map( pkm => {
+                const pokemonCaptured = pokemons.find(p => p.id === pkm.id)
+                if(pokemonCaptured){
+                    const newPokemon = {
+                        ...pkm, 
+                        captured_count: pokemonCaptured.captured_count,
+                        captured_date: pokemonCaptured.captured_date,
+                        first_appearance: pokemonCaptured.first_appearance,
+                    }
+
+                    if(pokemonCaptured.captured_count){
+                        return {...newPokemon, status: 'captured'}
+                    }
+                    else {
+                        return {...newPokemon, status: 'discovered'}
+                    }
+                }
+                return pkm;
+            })
+
+            dispatch(setPokedex(auxPokedex))
+        }
     }
     
     const setActivePokemon = (id) => { 
@@ -41,6 +60,7 @@ export const usePokedex = () => {
         activePokemon,
 
         startPokedex,
+        updatePokedex,
         setActivePokemon,
     }
 }

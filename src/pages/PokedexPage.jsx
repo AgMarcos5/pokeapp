@@ -12,7 +12,7 @@ const sortPokemons = ["id","capturados"]
 
 export const PokedexPage = () => {
 
-  const {isLoading,pokedex,setActivePokemon, startPokedex} = usePokedex();
+  const {isLoading,pokedex,setActivePokemon, startPokedex,updatePokedex} = usePokedex();
   const {pokemons} = useTrainer()
 
   const [sort, setSort] = useState(sortPokemons[0])
@@ -25,8 +25,14 @@ export const PokedexPage = () => {
 
 
   useEffect(() => {
-    startPokedex();
-  }, [])
+    if(pokemons.length > 0){
+      updatePokedex();
+    }
+    else{
+      startPokedex()
+    }
+  }, [pokemons])
+  
   
   return (
     <div className='pokedexContainer'>
