@@ -3,7 +3,7 @@ import { PokemonItem } from './PokemonItem'
 
 
 
-export const PokemonList = ({pokedex, page, maxPokemons}) => {
+export const PokemonList = ({pokedex, page, maxPokemons, setActivePokemon}) => {
 
   return (
     <div className='pokemonList'>
@@ -11,7 +11,7 @@ export const PokemonList = ({pokedex, page, maxPokemons}) => {
             pokedex
             ?.slice((page-1)*maxPokemons , (page-1)*maxPokemons + maxPokemons )
             .map( pkm => (
-                <PokemonItem key={pkm.id} pokemon={pkm} />
+                <PokemonItem key={pkm.id} pokemon={pkm} setActive={setActivePokemon}/>
             ))
         }
     </div>

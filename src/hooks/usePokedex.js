@@ -49,8 +49,8 @@ export const usePokedex = () => {
         }
     }
     
-    const setActivePokemon = (id) => { 
-        dispatch(onSetActivePokemon(id)) 
+    const setActivePokemon = (pokemon) => { 
+        dispatch(onSetActivePokemon(pokemon)) 
     }
 
 
