@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useMemo, useState } from 'react'
 import { Pagination } from '../components/pokedex/Pagination';
 import { PokemonInfo } from '../components/pokedex/PokemonInfo';
 import { PokemonList } from '../components/pokedex/PokemonList';
@@ -51,7 +51,7 @@ export const PokedexPage = () => {
     return statusValue(b.status) - statusValue(a.status);
   }
 
-  const [sort, setSort] = useState(sortPokemons[1])
+  const [sort, setSort] = useState(sortPokemons[0])
 
   const sortedPokemons = useMemo( () => {
     switch(sort) {
@@ -62,15 +62,16 @@ export const PokedexPage = () => {
   }, [pokemonList,sort])
 
 
-
   useEffect(() => {
-    if(pokemons.length > 0){
+    startPokedex();
+  }, [])
+
+  
+  useLayoutEffect(() => {
+    if(!isLoading && pokemons.length > 0){
       updatePokedex();
     }
-    else{
-      startPokedex()
-    }
-  }, [pokemons])
+  }, [pokemons, isLoading])
 
   useEffect(() => {
     setPokemonList(pokedex)

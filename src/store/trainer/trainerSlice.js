@@ -5,10 +5,10 @@ const initialState = {
     pokemons: [],
     bag: {
         pokeballs: 5,
-        superballs: 1,
-        ultraballs: 1,
-        masterballs: 1,
-        berries: 1,
+        superballs: 0,
+        ultraballs: 0,
+        masterballs: 0,
+        berries: 4,
     }
 }
 

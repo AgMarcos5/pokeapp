@@ -1,34 +1,50 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth'
 import { Login } from './auth/Login';
 import { Register } from './auth/Register';
 
+import "../styles/navbar.scss"
+
 export const Navbar = () => {
     const {status, user, startLogout} = useAuth();
+    const [showMenu, setShowMenu] = useState(false)
+
+    const onClickMenu = () => {
+        setShowMenu(!showMenu)
+    }
 
   return (
     <>
     <nav>
-        <ul>
+        <div className='menuButton' onClick={onClickMenu}>M</div>
+
+        <div className={showMenu ? 'show menuMobile' : 'menuMobile'}>
+
+        <ul >
             <li><Link to="/">Home</Link></li>
             <li><Link to="/play">Play</Link></li>
             <li><Link to="/pokedex">Pokedex</Link></li>
+            
             {
                 (status === 'authenticated')
                 ? (
                     <>
-                        <Link to="/profile"><h3>{user.displayName}</h3></Link>
-                        <button onClick={startLogout}>desconectar</button>
+                        <Link to="/profile">
+                            <div className='user'>
+                                {user.displayName}        
+                            </div>
+                        </Link>
                     </>
                 ):(
                 <>
-                    <li>Login</li>
-                    <li>Register</li>
+                    <li>Comenzar</li>
                 </>
                 )
             }
         </ul>
+        
+        </div>
     </nav>
     
     {

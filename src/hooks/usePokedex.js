@@ -11,7 +11,7 @@ export const usePokedex = () => {
     const dispatch = useDispatch();
 
     const startPokedex = async () => {
-        dispatch(startLoadingPokedex);
+        dispatch(startLoadingPokedex());
         const {data} = await pokeApi.get('/pokemon?limit=151&offset=0');
 
         const promises = data.results.map( async (pokemon) => {
@@ -23,7 +23,7 @@ export const usePokedex = () => {
 
     const updatePokedex = () => {
         if(pokemons.length){
-            dispatch(startLoadingPokedex);
+            //dispatch(startLoadingPokedex());
             
             const auxPokedex = pokedex.map( pkm => {
                 const pokemonCaptured = pokemons.find(p => p.id === pkm.id)

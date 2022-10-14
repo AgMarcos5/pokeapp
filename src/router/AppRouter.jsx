@@ -1,15 +1,21 @@
 import React, { useEffect } from 'react'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { CheckingAuth } from '../components/auth/CheckingAuth'
 import { useAuth } from '../hooks/useAuth'
+import { AppLayout } from '../layout/AppLayout'
 import { GamePage } from '../pages/GamePage'
 import { IndexPage } from '../pages/IndexPage'
 import { PokedexPage } from '../pages/PokedexPage'
 import { ProfilePage } from '../pages/ProfilePage'
 
+
+import { AnimatePresence } from "framer-motion"
+
 export const AppRouter = () => {
 
   const {status, checkAuth} = useAuth();
+  
+  const location = useLocation();
 
   useEffect(() => {
     checkAuth();
@@ -19,13 +25,14 @@ export const AppRouter = () => {
 
   
   return (
-    <Routes>
+    <AnimatePresence exitBeforeEnter >
+    <Routes location={location} key={location.pathname}>
         {
           (status === 'authenticated') ? (
             <>
-            <Route path='/play' element={<GamePage/>}/>
-            <Route path='/pokedex' element={<PokedexPage/>} />
-            <Route path='/profile' element={<ProfilePage/>}/>
+            <Route path='/play' element={<AppLayout><GamePage/></AppLayout>}/>
+            <Route path='/pokedex' element={<AppLayout><PokedexPage/></AppLayout>} />
+            <Route path='/profile' element={<AppLayout><ProfilePage/></AppLayout>}/>
             <Route path='/*' element={<Navigate to="/"/>}/>
             </>
           ) :
@@ -38,6 +45,7 @@ export const AppRouter = () => {
         }
         <Route path='/' element={<IndexPage/>}/>
     </Routes>
+    </AnimatePresence>
   )
   
 }

@@ -11,9 +11,7 @@ import "./styles/global.scss";
 ReactDOM.createRoot(document.getElementById("root")).render(
     <Provider store={store}>
       <BrowserRouter>
-        <AppLayout>
           <PokeApp />
-        </AppLayout>
       </BrowserRouter>
     </Provider>
 );

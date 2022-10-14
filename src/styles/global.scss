@@ -1,12 +1,100 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;600;700&display=swap');
 
 
-body{
+@font-face {
+    font-family: 'HalvarBreit';
+    src: url("../assets/fonts/HalvarBreit-Blk.ttf") format('truetype');
+}
+
+@import './colors';
+
+body, html{
     margin: 0;
     font-family: 'Kanit', sans-serif;
 }
 
+html { 
+    width:100vw;
+    overflow-x:hidden;
+}
+
+header{
+    position: relative;
+    height: 100%;
+    //height: 910px;
+    overflow: hidden;
+
+    transition: .5s;
+
+    &.small{
+        transition: 1s;
+        //animation-name: smallAnimation;
+        //animation-duration: 1s;
+        //height: 500px;
+
+        /*
+        .subtitle{
+            opacity: 0;
+        }
+*/        
+        @keyframes smallAnimation {
+            from {height: 910px;}
+            to {height: 500px;}
+        }
+    }
+
+
+    .bg{
+        background-image: url('../assets/img/background.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: top center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 930px;
+        width: 100%;
+        z-index: -1;
+        opacity: .9;
+    }
+
+    .container{
+        height: 100%;
+    }
+
+    .headerPosition{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: inherit;
+    }
+
+    .navbar{
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .subtitle{
+        font-family: "HalvarBreit";
+        text-align: center;
+        
+        font-size: calc(10px + 1.5vw);;
+        line-height: 0;
+        color: white;
+        margin-bottom: 80px;
+
+        span{
+            color:$yellow;
+        }
+    }
+}
+
+
 .container{
-    max-width: 1280px;
+    max-width: 1230px;
     margin: 0 auto;
+    position: relative;
+    width: 100%;
 }

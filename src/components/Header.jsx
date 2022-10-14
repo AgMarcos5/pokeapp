@@ -1,10 +1,66 @@
-import { Navbar } from './Navbar'
+import { Navbar } from "./Navbar";
+import { motion, AnimatePresence } from "framer-motion";
+import logo from "../assets/img/logo.png";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
-export const Header = () => {
+export const Header = ({ size }) => {
+  const [isFirstLoad, setIsFirstLoad] = useState(false);
+
+  const prevRoute = useLocation();
+
+  useEffect(() => {
+    if (prevRoute.pathname === "/") setIsFirstLoad(true);
+  }, []);
+
   return (
-    <header>
-        <h1>PokeAPP</h1>
-        <Navbar/>
-    </header>
-  )
-}
+    <motion.div
+      key="modal"
+      initial={{ height: size === "small" ? 500 : 500 }}
+      animate={{ height: size === "small" ? 500 : 910 }}
+      exit={{ height: size === "small" ? 500 : 500 }}
+      transition={{ type: "spring", stiffness: 30 }}
+    >
+      <header className={size}>
+        <div className="bg"></div>
+        <div className="container">
+          <div className="headerPosition">
+            {isFirstLoad ? (
+              <motion.div
+                className="navbar"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  ease: "easeIn",
+                  type: "spring",
+                  stiffness: 30,
+                  duration: 0.3,
+                }}
+              >
+                <img src={logo} className="logo" alt="pokeapp" />
+                <Navbar />
+              </motion.div>
+            ) : (
+              <div className="navbar">
+                <img src={logo} className="logo" alt="pokeapp" />
+                <Navbar />
+              </div>
+            )}
+
+            <motion.div
+              className="subtitle"
+              initial={{ opacity: size === "small" ? 0 : 0 }}
+              animate={{ opacity: size === "small" ? 0 : 1 }}
+              exit={{ opacity: size === "small" ? 0 : 0 }}
+            >
+              <p>DESCUBRE. CAPTURA. JUEGA</p>
+              <p>
+                CON <span>POKEAPP</span>
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </header>
+    </motion.div>
+  );
+};
