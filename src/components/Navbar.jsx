@@ -22,8 +22,8 @@ export const Navbar = () => {
         <div className={showMenu ? 'show menuMobile' : 'menuMobile'}>
 
         <ul >
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/play">Play</Link></li>
+            <li><Link to="/">Inicio</Link></li>
+            <li><Link to="/play">Juega</Link></li>
             <li><Link to="/pokedex">Pokedex</Link></li>
             
             {
@@ -46,15 +46,6 @@ export const Navbar = () => {
         
         </div>
     </nav>
-    
-    {
-        (status === 'not-authenticated') && (
-            <>
-                <Login/>
-                <Register/>
-            </>
-        )
-    }
 
     </>
   )

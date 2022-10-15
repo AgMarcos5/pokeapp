@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from "react-redux"
 import { FirebaseAuth } from "../firebase/config";
 import { errorsFirebase } from "../firebase/errors";
 import { loginWithEmailPassword, logoutFirebase, registerUserWithEmail, signInWithGoogle } from "../firebase/providers";
-import { onChecking, onLogin, onLogout } from "../store/auth/authSlice";
+import { onChecking, onLoading, onLogin, onLogout } from "../store/auth/authSlice";
 import { startLoadingTrainerInfo } from "../store/trainer/thunks";
 
 
 export const useAuth = () => {
-    const {status, errorMessage, user} = useSelector(state => state.auth);
+    const {status, isLoading, errorMessage, user} = useSelector(state => state.auth);
+
     const dispatch = useDispatch();
 
     const checkAuth = () => {
@@ -23,7 +24,8 @@ export const useAuth = () => {
     }
 
     const startLogin = async ({email,password}) => {
-        dispatch(onChecking());
+        //dispatch(onChecking());
+        dispatch(onLoading())
         const result = await loginWithEmailPassword({email,password});
         if(!result.ok) {
             result.errorMessage = errorsFirebase[result.errorCode]
@@ -35,7 +37,8 @@ export const useAuth = () => {
     }
     
     const startGoogleLogin = async () => {
-        dispatch(onChecking());
+        //dispatch(onChecking());
+        dispatch(onLoading())
         const result = await signInWithGoogle();
         if(!result.ok) {
             result.errorMessage = errorsFirebase[result.errorCode]
@@ -53,7 +56,8 @@ export const useAuth = () => {
     }
 
     const startRegister = async ({email,password,displayName}) => {
-        dispatch(onChecking());
+        //dispatch(onChecking());
+        dispatch(onLoading())
         const result = await registerUserWithEmail({email,password,displayName});
         if(!result.ok) {
             result.errorMessage = errorsFirebase[result.errorCode]
@@ -70,6 +74,7 @@ export const useAuth = () => {
         status,
         errorMessage,
         user,
+        isLoading,
 
         checkAuth,
         startLogin,

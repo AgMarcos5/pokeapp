@@ -6,10 +6,26 @@ import {motion} from "framer-motion"
 import '../styles/indexPage.scss'
 import pikachu_2 from '../assets/img/pikachu2.png'
 import pikachu_1 from '../assets/img/pikachu1.png'
+import rotomImg from '../assets/img/rotom.gif'
+import cardPokedex from '../assets/img/pokedexCard.jpg'
+import cardItems from '../assets/img/cardItems.png'
+import cardPokemons from '../assets/img/cardPokemons.png'
+import { AuthModal } from "../components/auth/AuthModal";
+import { useAuth } from "../hooks";
 
 export const IndexPage = () => {
+  
+  const {status} = useAuth();
+
   return (
     <>
+      
+      {
+          (status === 'not-authenticated') && (
+              <AuthModal/>
+          )
+      }
+      
       <Header />
 
       <motion.div
@@ -19,6 +35,7 @@ export const IndexPage = () => {
         exit={{ opacity: 0 }}
         transition={{ type: "spring", stiffness: 30 }}
       >
+      <div className="contentBG">
 
       <section className="sectionGame">
         <div className="container flex">
@@ -30,24 +47,55 @@ export const IndexPage = () => {
               <h1 className="title">¿Quién es ese <span>Pokémon</span>?</h1>
               <Link to="/play"><div className="playButton">▶</div></Link>
             </div>
-            <h4>Adivina el pokemon y captúralo para completar la pokedex</h4>
           </div>
           
           <img src={pikachu_2} className="pikachu2" alt="detective pikachu"/>
         </div>
       </section>
 
+      <section className="sectionInfo">
+        <div className="container flex">
+
+          <div className="card">
+              <div className="cardImg">
+                <img src={cardPokemons} alt=""/>
+              </div>
+            <div className="content">
+              <h1>Juega</h1>
+              <h4>Adivina los nombres y registra en la Pokedex</h4>
+            </div>
+          </div>
+
+          
+          <div className="card"><div className="cardImg">
+                <img src={cardItems} alt=""/>
+              </div>
+            <div className="content">
+              
+              <h1>Captura</h1>
+              <h4>Lanza pokeballs y bayas para capturar</h4>
+            </div>
+          </div>
+
+
+        </div>
+      </section>
+
       <section className="sectionPokedex">
         <div className="container flex">
-          <div className="cardImage">
-
-          </div>
+        <div className="cardImageContainer">
+          <img src={cardPokedex} className="cardImage" alt="card"/>
+        </div>
           <div className="cardText">
-            <h1>Pokedex</h1>
+            <img src={rotomImg} alt="rotomdex"/>
+            <h2>Consulta información de tus Pokémon favoritos en la 
+            <Link to="/pokedex"><span> Pokedex </span></Link>
+            </h2>
           </div>          
         </div>
       </section>
 
+      </div>
         
 
 
