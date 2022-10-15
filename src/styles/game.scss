@@ -7,6 +7,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: -140px;
 
     .imageContainer{
         position: relative;
@@ -112,8 +113,9 @@
     }
 
     .gameContent{
-        margin-top: -80px;
-        width: 100%;
+        margin-top: -145px;
+        width: 90%;
+        max-width: 500px;
 
         form{
             display: flex;
@@ -137,6 +139,13 @@
                     outline: 2px solid rgb(52 206 167);
                 box-shadow: 0px 0px 20px 7px rgb(156 225 207);
                 }
+
+                &.disable{
+                    pointer-events: none;box-shadow: 0px 0px 20px 7px rgb(156 225 207 / 0%);
+                    &::placeholder {
+                        color: rgb(194, 194, 194);
+                      }
+                }
             }
 
             button{
@@ -148,7 +157,7 @@
                 border-radius: 30px;
                 padding: 20px 30px;
                 width: 100%;
-                max-width: 200px;
+                max-width: 260px;
                 font-size: 16px;
                 cursor: pointer;
                 text-transform: uppercase;
@@ -157,6 +166,14 @@
                 &:hover{
                     background: rgb(161,221,157);
                     background: linear-gradient(90deg, rgba(161,221,157,1) 0%, rgba(43,205,168,1) 41%);
+                }
+
+                &.nextPokemon{
+                    text-shadow: 1px 1px 2px rgb(135 23 23);
+                    background: linear-gradient(90deg, rgba(221,157,157,1) 0%, rgba(205,43,43,1) 100%);
+                    &:hover{
+                        background: linear-gradient(90deg, rgba(221,157,157,1) 0%, rgba(205,43,43,1) 41%);
+                    }
                 }
             }
         }

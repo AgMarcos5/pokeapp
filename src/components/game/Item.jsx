@@ -1,13 +1,16 @@
 import React from 'react'
 import { useTrainer } from '../../hooks'
 
-export const Item = ({name,throwItem}) => {
+
+export const Item = ({value,throwItem}) => {
 
     const handleOnClick = () =>{
-      throwItem(name)
+      throwItem(value.name)
     }
 
   return (
-    <button onClick={handleOnClick}>{name}</button>
+    <button onClick={handleOnClick}>
+      <img src={value.src} alt={value.name} />
+    </button>
   )
 }

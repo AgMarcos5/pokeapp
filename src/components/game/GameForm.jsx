@@ -21,6 +21,8 @@ export const GameForm = ({disable, pokemon, guessPokemon, endGame, nextPokemon})
     
     const [formSubmited, setFormSubmited] = useState(false);  
 
+
+
     const onFormSubmit = (event) => {
         event.preventDefault();
         if(formSubmited || disable) {
@@ -46,15 +48,17 @@ export const GameForm = ({disable, pokemon, guessPokemon, endGame, nextPokemon})
     <>
         <form onSubmit={onFormSubmit}>
             <input 
-                autocomplete="off"
+                className={formSubmited ? 'disable' : ''}
+                disabled={formSubmited}
+                autoComplete="off"
                 type="text" 
                 placeholder="Escribe el nombre de un pokemon"
                 name="pokemonName"
               value={pokemonName}
               onChange={onInputChange}
             />
-            <button  type="submit">
-              Juega
+            <button  className={formSubmited ? 'nextPokemon' : ''} type="submit">
+              {formSubmited ? 'Siguiente Pokemon' : 'Juega'}
             </button>
 
         </form>
