@@ -1,0 +1,10 @@
+.containerBg{
+    background: linear-gradient(180deg, rgb(231 231 231) 0%, rgba(0, 0, 0, 0) 70%);
+    position: relative;
+
+    .container{
+        z-index: 1;
+        
+    }
+
+}

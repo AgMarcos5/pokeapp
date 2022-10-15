@@ -4,7 +4,9 @@ import logo from "../assets/img/logo.png";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-export const Header = ({ size }) => {
+import arrow from "../assets/img/arrow1.png"
+
+export const Header = ({ size, executeScroll }) => {
   const [isFirstLoad, setIsFirstLoad] = useState(false);
 
   const prevRoute = useLocation();
@@ -57,6 +59,7 @@ export const Header = ({ size }) => {
               <p>
                 CON <span>POKEAPP</span>
               </p>
+              <img src={arrow} onClick={executeScroll} alt="bajar"/>
             </motion.div>
           </div>
         </div>

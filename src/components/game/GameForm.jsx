@@ -17,7 +17,7 @@ const compareStrings = (str1, str2) => {
 
 export const GameForm = ({disable, pokemon, guessPokemon, endGame, nextPokemon}) => {
 
-    const {formState,isFormValid,pokemonName,pokemonNameValid,onInputChange} = useForm(formData,formValidations);
+    const {formState,isFormValid,pokemonName,pokemonNameValid,onInputChange, onResetForm} = useForm(formData,formValidations);
     
     const [formSubmited, setFormSubmited] = useState(false);  
 
@@ -29,6 +29,7 @@ export const GameForm = ({disable, pokemon, guessPokemon, endGame, nextPokemon})
         }
         else{
             setFormSubmited(true);
+            onResetForm()
             if(compareStrings(pokemonName,pokemon.name))
             {
                 guessPokemon();
@@ -45,6 +46,7 @@ export const GameForm = ({disable, pokemon, guessPokemon, endGame, nextPokemon})
     <>
         <form onSubmit={onFormSubmit}>
             <input 
+                autocomplete="off"
                 type="text" 
                 placeholder="Escribe el nombre de un pokemon"
                 name="pokemonName"
@@ -52,7 +54,7 @@ export const GameForm = ({disable, pokemon, guessPokemon, endGame, nextPokemon})
               onChange={onInputChange}
             />
             <button  type="submit">
-              Play
+              Juega
             </button>
 
         </form>

@@ -3,12 +3,15 @@ import { Header } from '../components/Header'
 
 import {motion} from 'framer-motion'
 
+import "../styles/layout.scss"
+
 export const AppLayout = ({children}) => {
   return (
     <>
     <Header size="small"/>
 
     <motion.div
+        className='containerBg'
         key="modal"
         initial={{ opacity: 0}}
         animate={{ opacity: 1}}
@@ -18,6 +21,8 @@ export const AppLayout = ({children}) => {
     <div className='container'>
         {children}
     </div>
+
+    <div className='bgFilter'></div>
     
     </motion.div>
     </>

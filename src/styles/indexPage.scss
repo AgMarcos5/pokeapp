@@ -3,6 +3,7 @@
 
 .contentBG{
     background-color: #e6ebec;
+    background: linear-gradient(0deg, rgb(219, 219, 219) 0%, rgba(0, 0, 0, 0) 70%);
     z-index: 1;
     position: relative;
 }
@@ -86,6 +87,10 @@
 }
 
 .sectionInfo{
+    background-image: url("../assets/img/bgpattern.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     .flex{
         display: flex;
         justify-content: space-around;
@@ -99,6 +104,7 @@
         margin-top: 20px;
         padding: 0 10px;
         width: 340px;
+        box-shadow: 0px 0px 20px 20px #dbdbdb63;
 
         .content{
             max-width: 200px;
@@ -128,7 +134,6 @@
 
 .sectionPokedex{
     height: 550px;
-    background: linear-gradient(0deg, rgb(219 219 219) 0%, rgba(0, 0, 0, 0) 70%);
 
     .cardImageContainer{
         height: 500px;

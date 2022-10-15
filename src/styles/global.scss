@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;600;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;600;700&family=Roboto:wght@100;300;400;500&display=swap');
 
 @font-face {
     font-family: 'HalvarBreit';
@@ -21,28 +20,8 @@ html {
 header{
     position: relative;
     height: 100%;
-    //height: 910px;
     overflow: hidden;
-
     transition: .5s;
-
-    &.small{
-        transition: 1s;
-        //animation-name: smallAnimation;
-        //animation-duration: 1s;
-        //height: 500px;
-
-        /*
-        .subtitle{
-            opacity: 0;
-        }
-*/        
-        @keyframes smallAnimation {
-            from {height: 910px;}
-            to {height: 500px;}
-        }
-    }
-
 
     .bg{
         background-image: url('../assets/img/background.jpg');
@@ -88,7 +67,17 @@ header{
         span{
             color:$yellow;
         }
+
+        img{
+            cursor: pointer;
+            filter: invert(99%) sepia(86%) saturate(6771%) hue-rotate(322deg) brightness(96%) contrast(94%);
+        }
     }
+}
+
+input{
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
 }
 
 
@@ -97,4 +86,28 @@ header{
     margin: 0 auto;
     position: relative;
     width: 100%;
+}
+
+footer{
+    text-align: center;
+    color: #1f2028;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    img{
+        transform: rotate(180deg);
+        filter: invert(11%) sepia(10%) saturate(934%) hue-rotate(196deg) brightness(98%) contrast(95%);
+        transition: .5s;
+        cursor: pointer;
+
+        &:hover{
+            transform: translateY(-3px) rotate(180deg);
+        }
+    }
+    p{
+        margin: 0;
+        padding: 5px;
+    }
+    a{
+        color: #ff2f00;
+    }
 }

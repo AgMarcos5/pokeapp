@@ -110,7 +110,10 @@ export const GamePage = () => {
         <h3>cargando...</h3>
       ) : (
         <>
-          <PokemonImage showPokemon={showPokemon} src={pokemon.image} />
+       
+          <PokemonImage showPokemon={showPokemon} src={pokemon.image} captureCombo={captureCombo}/>
+          <div className="gameContent">
+
           <GameForm 
             disable={showPokemon}
             pokemon={pokemon} 
@@ -118,14 +121,12 @@ export const GamePage = () => {
             endGame={handleEndGame}
             nextPokemon={handleNextPokemon} 
           />
-          <div>
-            <h3>Pokemon adivinados: {captureCombo}</h3>
-          </div>
           <Bag 
             disable={!showPokemon || capture}
             throwPokeball={handleThrowPokeball}
             throwBerry={handleThrowBerry}
             />
+          </div>
         </>
       )}
     </div>
