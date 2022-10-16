@@ -82,15 +82,12 @@ export const PokedexPage = () => {
 
   return (
     <div className="pokedexContainer">
-      <div>
-        <PokemonInfo pokemon={activePokemon} setActive={setActivePokemon} />
-      </div>
-      <div>
+      <PokemonInfo pokemon={activePokemon} setActive={setActivePokemon} />
+      <div className="pokedexContent">
         <Search onSearch={handleSearch} />
-      </div>
       {pokemonList?.length > 0 ? (
         <>
-          <div>
+          <div className='filters'>
             <Sort setSort={setSort}/>
             <Pagination
               page={page}
@@ -103,12 +100,14 @@ export const PokedexPage = () => {
             pokedex={sortedPokemons}
             page={page}
             maxPokemons={maxPokemons}
+            activePokemon={activePokemon}
             setActivePokemon={setActivePokemon}
           />
         </>
       ) : (
         <h1>No se encuentran pokemons...</h1>
       )}
+      </div>
     </div>
   );
 }

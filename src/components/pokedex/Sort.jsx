@@ -2,7 +2,7 @@
 export const Sort = ({setSort}) => {
 
   return (
-    <div>
+    <div className="sortContainer">
         <p>Ordenar por: </p>
         <button onClick={() => setSort("id")}>ID</button>
         <button onClick={() => setSort("captured")}>Atrapados</button>

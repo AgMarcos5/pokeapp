@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const PokemonItem = ({pokemon, setActive}) => {
+export const PokemonItem = ({pokemon, setActive, activePokemon}) => {
 
   const handleSetActive = () => {
     if(pokemon.status !== 'undiscovered')
@@ -9,11 +9,14 @@ export const PokemonItem = ({pokemon, setActive}) => {
 
 
   return (
+    <div className='pokemonItem'>
+      
     <div 
-      className={`pokemonItem ${pokemon.status}`}
+      className={`${pokemon.status} ${(activePokemon === pokemon) ? 'selected' : '' }`}
       onClick={handleSetActive}
     >
         <img src={pokemon.icon} alt={pokemon.name} />
+    </div>
     </div>
   )
 }

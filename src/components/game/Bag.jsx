@@ -59,33 +59,36 @@ export const Bag = ({disable, throwPokeball, throwBerry}) => {
 
   return (
     <div className={disable ? 'disable bag' : 'bag'}>
+      <div className='bagContent'>
+        <button className="prev arrow" onClick={() => prevClick()}>
+                      <img src={arrow} alt="anterior"/>
+        </button>
+        <div className="pokeballsContainer">
+              <div className='disabledItem'>
+                <Item value={listItems[getPrevItem(selectedItem)]} throwItem={throwPokeball}/>
+              </div>
 
-      <button className="prev arrow" onClick={() => prevClick()}>
-                    <img src={arrow} alt="anterior"/>
-      </button>
-      <div className="pokeballsContainer">
-            <div className='disabledItem'>
-              <Item value={listItems[getPrevItem(selectedItem)]} throwItem={throwPokeball}/>
-            </div>
+              <div className='selectedItem'>
+              <Item value={listItems[selectedItem]} throwItem={throwPokeball}/>
+              <span>x{bag[listItems[selectedItem].name]}</span>
+              </div>
 
-            <div className='selectedItem'>
-            <Item value={listItems[selectedItem]} throwItem={throwPokeball}/>
-            <span>x{bag[listItems[selectedItem].name]}</span>
-            </div>
+              <div className='disabledItem'>
+              <Item value={listItems[getNextItem(selectedItem)]} throwItem={throwPokeball}/>
+              </div>
+        </div>
+        <button className="next arrow" onClick={() => nextClick()}>
+          <img src={arrow} alt="siguiente"/>
+        </button>
 
-            <div className='disabledItem'>
-            <Item value={listItems[getNextItem(selectedItem)]} throwItem={throwPokeball}/>
-            </div>
+        <div className='selectedItem'>
+          <Item value={{name: "berries", src: berry}} throwItem={throwBerry}/>
+          <span>x{bag.berries}</span>
+        </div>
       </div>
-      <button className="next arrow" onClick={() => nextClick()}>
-        <img src={arrow} alt="siguiente"/>
-      </button>
 
-      <div className='selectedItem'>
-        <Item value={{name: "berries", src: berry}} throwItem={throwBerry}/>
-        <span>x{bag.berries}</span>
-      </div>
 
+    <div className='bagBGFilter'></div>
     </div>
   )
 }

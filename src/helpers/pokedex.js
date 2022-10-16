@@ -9,6 +9,7 @@ export const getPokemonData = async (pokemonName) => {
         icon: data.sprites.front_default, 
         image: data.sprites.other.home.front_default,
         types: data.types,
+        stats: data.stats,
         status: 'undiscovered' // 'discovered' 'captured'
         };
     } catch (error) {

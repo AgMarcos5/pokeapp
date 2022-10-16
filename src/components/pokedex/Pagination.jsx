@@ -17,14 +17,14 @@ export const Pagination = ({ page, lastPage, prev, next }) => {
   };
 
   return (
-    <div className="pagination-container">
+    <div className="paginationContainer">
       <button className={page === 1 ? "disable" : ""} onClick={prevPage}>
         <img src={arrow} alt="arrow" />
       </button>
       <div className="page">
-        Page{" "}
+        Página{" "}
         <span className="page-color">
-          {page} of {lastPage}
+          {page} de {lastPage}
         </span>
       </div>
       <button className={page === lastPage ? "disable" : ""} onClick={nextPage}>

@@ -1,0 +1,189 @@
+
+@import '../colors';
+
+.pokemonInfoContainer{
+    width: 90%;
+    max-width: 1230px;
+    height: 150px;
+
+    .subtitle {
+        font-family: "HalvarBreit";
+        text-align: center;
+        font-size: calc(10px + 1.5vw);
+        line-height: 0;
+        color: white;
+        margin-bottom: 80px;
+        text-transform: uppercase;
+        max-width: 500px;
+    }
+
+    .imageContainer {
+        position: relative;
+        top: -299px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        pointer-events: none;
+    }
+}
+
+.pokemonInfo{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 30px;
+    background: #f4f4f4;
+    border-radius: 5px;
+    position: relative;
+    text-transform: capitalize;
+
+    .close{    
+        font-family: "roboto";
+        font-weight: 600;
+        cursor: pointer;
+        border: 0;
+        background: #1f20281c;
+        padding: 7px;
+        border-radius: 5px;
+        width: 30px;
+        height: 30px;
+        color: #302b2b;
+        &:hover{
+            background: #1f202828;
+        }
+    }
+
+    .flex{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .stats{
+        display: flex;
+        gap: 14px;
+        .stat{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            background: #e7e7e7;
+            border-radius: 10px;
+            padding: 2px;
+            box-sizing: border-box;
+
+            &.hide{
+                .statName{
+                    background-color: grey !important;
+                }
+            }
+            
+            .statName{
+                background-color: grey;
+                border-radius: 60px;
+                width: 30px;
+                font-size: 12px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+            }
+
+            .statValue{
+                padding-top: 5px;
+                font-size: 12px;
+            }
+
+            &:nth-child(1) .statName{
+                background-color: #df2140;
+            }
+            &:nth-child(2) .statName{
+                background-color: #ff994d;
+            }
+            &:nth-child(3) .statName{
+                background-color: #ffdc41;
+            }
+            &:nth-child(4) .statName{
+                background-color: #85ddff;
+            }
+            &:nth-child(5) .statName{
+                background-color: #afd885;
+            }
+            &:nth-child(6) .statName{
+                background-color: #fb94a8;
+            }
+        }
+    }
+}
+
+
+.types{
+    &.points{
+
+        &.hide{
+            div{
+                background-color: grey !important;
+            }
+        }
+
+        :nth-child(2){
+            top: 10px;
+            right: -10px;
+        }
+    }
+
+    .bug{
+        background: $bug;
+    }
+    .dragon{
+        background: $dragon;
+    }
+    .fairy{
+        background: $fairy;
+    }
+    .fire{
+        background: $fire;
+    }
+    .ghost{
+        background: $ghost;
+    }
+    .ground{
+        background: $ground;
+    }
+    .normal{
+        background: $normal;
+    }
+    .psychic{
+        background: $psychic;
+    }
+    .steel{
+        background: $steel;
+    }
+    .dark{
+        background: $dark;
+    }
+    .electric{
+        background: $electric;
+    }
+    .fighting{
+        background: $fighting
+    }
+    .flying{
+        background: $flying;
+    }
+    .grass{
+        background: $grass;
+    }
+    .ice{
+        background: $ice;
+    }
+    .poison{
+        background: $poison;
+    }
+    .rock{
+        background: $rock;
+    }
+    .water{
+        background: $water;
+    }
+}
