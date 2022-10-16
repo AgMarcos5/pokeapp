@@ -1,13 +1,11 @@
 import React from 'react'
 import { PokemonImage } from '../game/PokemonImage';
-
+import rotomdex from "../../assets/img/pokedex/rotomdex.png"
 import "../../styles/pokedex/pokemonInfo.scss"
 
 const statName = ["HP","ATK","DEF","SpA","SpD","SPD"]
 
 export const PokemonInfo = ({pokemon,setActive}) => {
-
-    console.log(pokemon)
 
     const close = () => {
         setActive(null);
@@ -16,6 +14,10 @@ export const PokemonInfo = ({pokemon,setActive}) => {
     if(!pokemon){
         return (
             <div className='pokemonInfoContainer'>
+            <div className='logo'>
+              <div className='subtitle'>Pokedex</div>
+              <img src={rotomdex} alt="rotom"/>
+            </div>
             </div>
         )
     }

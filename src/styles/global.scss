@@ -17,6 +17,27 @@ html {
     overflow-x:hidden;
 }
 
+.loading{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    img{
+        animation:spin 1s linear infinite;
+    }
+    filter: invert(76%) sepia(2%) saturate(158%) hue-rotate(322deg) brightness(90%) contrast(89%);
+
+    @keyframes spin{
+        100%{
+            -webkit-transform:rotate(360deg);
+            transform:rotate(360deg);
+        }
+    }
+    
+}
+
 header{
     position: relative;
     height: 100%;

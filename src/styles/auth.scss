@@ -1,10 +1,18 @@
+
+@import './colors';
+
+.modal{
+    z-index: -1;
+    position: relative;
+}
+
 .authBg{
     width: 100%;
     height: 100%;
     position: fixed;
     top: 0;
     left: 0;
-    background: rgba(20, 20, 20, 0.65);
+    background: rgb(20 20 20 / 85%);
     backdrop-filter: blur(5px);
     z-index: 2;
     display: flex;
@@ -14,10 +22,127 @@
     .authContainer{
         border-radius: 10px;
         background: white;
-        max-width: 90%;
-        margin: 0 auto;
+        max-width: 500px;
         position: relative;
-        padding: 50px;
+        padding: 15px;
+        box-sizing: border-box;
+        width: 100%;
+        margin: 20px;
+        text-align: center;
+        overflow: hidden;
+
+        .authLoading{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffffc7;
+        }
+
+        .close{
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            width: 50px;
+            font-weight: 700;
+            font-family: 'HalvarBreit';
+            background: transparent;
+            color: $gengar;
+            &:hover{
+                color: $gengarHover;
+                background: #dfdfdf;
+            }
+        }
+
+        p{
+            font-size: 18px;
+            margin: 0;
+        }
+
+        form {
+
+            .error{
+                text-align: left;
+                min-height: 20px;
+                font-size: 10pt;
+                color: red;
+            }
+
+            .buttons{
+                margin-top: 15px;
+                display: flex;
+                width: 100%;
+                align-items: center;
+                justify-content: center;
+                gap: 20px;
+            }
+        }
+
+        input{
+            font-family: "Roboto", sans-serif;
+            letter-spacing: inherit;
+            border: 0px;
+            background: #e3e3e3;
+            height: 1.4375em;
+            margin: 0px;
+            display: block;
+            min-width: 0px;
+            width: 100%;
+            margin-top: 10px;
+            border-bottom: 2px solid $gengar;
+
+                    
+            box-sizing: border-box;
+            width: 100%;
+            padding: 20px;
+
+            &.errorInput{
+                border-color: red;
+            }
+
+            &:focus{
+                outline: 0;
+                box-shadow: 0 0 0 black;
+            }
+        }
+
+        button{
+            background: $gengar;
+            border: 0;
+            border-radius: 10px;
+            width: 190px;
+            height: 50px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: .2s;
+            &.google{
+                width: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                img{
+                    filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(182deg) brightness(94%) contrast(118%);
+                    width: 65%;
+                }
+            }
+            &:hover{
+                background: $gengarHover;
+            }
+        }
+    }
+
+    .link{
+        margin-top: 20px;
+        span{
+            cursor: pointer;
+            color: $gengar;
+            text-decoration: underline;
+            &:hover{
+                color: $gengarHover;
+            }
+        }
     }
 
 }

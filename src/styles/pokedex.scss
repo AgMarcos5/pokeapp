@@ -1,3 +1,6 @@
+
+@import './colors';
+
 .pokedexContainer{
     text-align: center;
     min-height: 400px;
@@ -5,11 +8,21 @@
     flex-direction: column;
     align-items: center;
     margin-top: -100px;
+    margin-bottom: 50px;
 
     .pokedexContent{
         //margin-top: -145px;
         width: 90%;
         max-width: 1230px;
+    }
+
+    .borders{
+        border: 3px solid #666864;
+        border-radius: 5px;
+        margin-top: 30px;
+        overflow: hidden;
+        box-shadow: 0px 7px 12px 6px #c3c3c3;
+        outline: 4px solid #4a4c482b;
     }
 
     // SEARCH
@@ -31,7 +44,8 @@
         }
 
         &.disable{
-            pointer-events: none;box-shadow: 0px 0px 20px 7px rgb(156 225 207 / 0%);
+            pointer-events: none;
+            box-shadow: 0px 0px 20px 7px rgb(156 225 207 / 0%);
             &::placeholder {
                 color: rgb(194, 194, 194);
               }
@@ -42,17 +56,40 @@
     .filters{
         display: flex;
         width: 100%;
+        height: 50px;
         justify-content: space-between;
         background: #ffffff;
-        padding: 0 10px;
-        color: #323232;
-        margin-top: 30px;
-        margin-bottom: 3px;
+        color: white;
         position: relative;
         box-sizing: border-box;
         font-family: "roboto";
         font-size: 16px;
         box-shadow: 0px 5px 9px 0px rgb(189 189 189 / 57%);
+        border-radius: 50px;
+
+        .filtersContent{
+            display: flex;
+            justify-content: space-between;
+            z-index: 1;
+            width: 100%;
+            padding: 0 10px;
+            background: rgb(203 203 203 / 38%);
+            backdrop-filter: blur(3px);
+            overflow: hidden;
+        }
+
+
+
+        .bgFilters{
+            background-image: url("../assets/img/background.jpg");
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-position: 50% 70%;
+        }
 
         .sortContainer, .paginationContainer{
             display: flex;
@@ -61,8 +98,83 @@
             p{
                 margin-right: 5px;
             }
+        }
 
+        .sortContainer {
+            p{
+                font-size: 13px;
+            }
+            span button{
+                &:nth-child(1){
+                    border-radius: 5px 0 0 5px;
+                }
+                &:nth-child(2){
+                    border-radius: 0 5px 5px 0;
+                }
+            }
+            button{
+                cursor: pointer;
+                border: 0;
+                background: #383435;
+                color: white;
+                padding: 10px 20px;
+                transition: .2s;
+                &.active{
+                    background: #1f1c1d;
+                }
+                &:hover{
+                    background: #242021;
+                }
+                &:active{
+                    color: $yellow;
+                }
+            }
+        }
 
+        .paginationContainer{
+            .page{
+                margin: 0 10px;
+            }
+            button {
+                cursor: pointer;
+                background: #242021;
+                color: white;
+                transition: 0.2s;
+                border: 0;
+                border-radius: 60px;
+                outline: 2px solid #2b28254a;
+                height: 35px;
+                width: 35px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                img{
+                    width: 15px;
+                    filter: invert(100%) sepia(42%) saturate(3836%) hue-rotate(324deg) brightness(95%) contrast(97%);
+                }
+
+                &:hover{
+                    background: $yellow;
+                    img{
+                        filter: invert(10%) sepia(6%) saturate(676%) hue-rotate(295deg) brightness(102%) contrast(93%);
+                    }
+                }
+
+                &.disable{
+                    background-color: #585455;
+                    pointer-events: none;
+                    user-select: none;
+                    opacity: .5;
+                }
+
+                &:first-child {
+                    transform: rotate(90deg);
+                }
+                &:last-child {
+                    transform: rotate(-90deg);
+                }
+            }
         }
     }
 
@@ -70,15 +182,15 @@
 
     // POKEMON LIST
 
-    .pokemonList{    
-        background: rgb(184,184,184);
-        background: radial-gradient(circle, rgb(217 217 217) 0%, rgba(255,255,255,0) 90%);
+    .pokemonList{        
+        background: rgb(184 184 184 / 32%);
+        //background: radial-gradient(circle, rgb(217 217 217) 0%, rgba(255,255,255,0) 90%);
 
         display: flex;
         flex-wrap: wrap;
         align-items: flex-start;
         justify-content: space-around;
-        min-height: 500px;
+        min-height: 510px;
         width: 100%;
         box-sizing: border-box;
         padding: 30px 10px 10px 10px;
@@ -91,21 +203,27 @@
             justify-content: center;
 
             .undiscovered,.discovered,.captured{
+                cursor: pointer;
                 display: flex;
+                border: 1px solid transparent;
                 background-color: #cccccc78;
                 border-radius: 10px;
+                transition: .5s;
+                img{
+                transition: .5s;
+                }
             }
 
             .undiscovered{
                 img{
                     pointer-events: none;
                     user-select: none;
-                    filter: brightness(0) opacity(0.9);
+                    filter: brightness(0) opacity(0.2);
                 }
             }
             .discovered{
                 img{
-                    filter: brightness(0.5) opacity(0.6);
+                    filter: brightness(0.5) opacity(0.7);
                 }
             }
             .captured{
@@ -114,10 +232,17 @@
                 }
             }
 
+            .discovered, .captured{
+                &:hover{
+                    background-color: #3d3d3d78;
+                    background: radial-gradient(circle, rgb(255, 255, 255) 25%, #f5e198 70%);
+                }
+            }
+
 
             .selected{
-                background-color: #cccccc78;
-                outline: 2px solid #0000000a;
+                border: 1px solid $yellow;
+                background: radial-gradient(circle, rgb(255, 255, 255) 25%, $yellow 70%);
             }
         }
     }

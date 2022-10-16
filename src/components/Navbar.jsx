@@ -6,7 +6,7 @@ import { Register } from './auth/Register';
 
 import "../styles/navbar.scss"
 
-export const Navbar = () => {
+export const Navbar = ({showAuth}) => {
     const {status, user, startLogout} = useAuth();
     const [showMenu, setShowMenu] = useState(false)
 
@@ -38,7 +38,7 @@ export const Navbar = () => {
                     </>
                 ):(
                 <>
-                    <li>Comenzar</li>
+                    <li className="user" onClick={() => showAuth(true)}>Comenzar</li>
                 </>
                 )
             }

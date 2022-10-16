@@ -6,15 +6,25 @@
     max-width: 1230px;
     height: 150px;
 
-    .subtitle {
-        font-family: "HalvarBreit";
-        text-align: center;
-        font-size: calc(10px + 1.5vw);
-        line-height: 0;
-        color: white;
-        margin-bottom: 80px;
-        text-transform: uppercase;
-        max-width: 500px;
+    .logo{
+        position: relative;
+        top: -190px;
+
+        img{    
+            margin-top: -70px;
+        }
+
+        .subtitle {        
+            font-family: "HalvarBreit";
+            font-size: calc(50px + 1.5vw);
+            color: #fff9ee;
+            margin: 0 auto;
+            max-width: 500px;
+            text-transform: uppercase;
+            border-bottom: 6px solid #f64f51;
+            text-shadow: 0 0 20px #616399;
+        }
+
     }
 
     .imageContainer {
@@ -123,6 +133,7 @@
         &.hide{
             div{
                 background-color: grey !important;
+                background-image: none;
             }
         }
 
@@ -132,58 +143,80 @@
         }
     }
 
+    div{
+        background-size: contain;
+    }
+
     .bug{
-        background: $bug;
+        background-image: url("../../assets/img/pokedex/bug.png");
+        background-color: $bug;
     }
     .dragon{
-        background: $dragon;
+        background-image: url("../../assets/img/pokedex/dragon.png");
+        background-color: $dragon;
     }
     .fairy{
-        background: $fairy;
+        background-image: url("../../assets/img/pokedex/fairy.png");
+        background-color: $fairy;
     }
     .fire{
-        background: $fire;
+        background-image: url("../../assets/img/pokedex/fire.png");
+        background-color: $fire;
     }
     .ghost{
-        background: $ghost;
+        background-image: url("../../assets/img/pokedex/ghost.png");
+        background-color: $ghost;
     }
     .ground{
-        background: $ground;
+        background-image: url("../../assets/img/pokedex/ground.png");
+        background-color: $ground;
     }
     .normal{
-        background: $normal;
+        background-image: url("../../assets/img/pokedex/normal.png");
+        background-color: $normal;
     }
     .psychic{
-        background: $psychic;
+        background-image: url("../../assets/img/pokedex/psychic.png");
+        background-color: $psychic;
     }
     .steel{
-        background: $steel;
+        background-image: url("../../assets/img/pokedex/steel.png");
+        background-color: $steel;
     }
     .dark{
-        background: $dark;
+        background-image: url("../../assets/img/pokedex/dark.png");
+        background-color: $dark;
     }
     .electric{
-        background: $electric;
+        background-image: url("../../assets/img/pokedex/electric.png");
+        background-color: $electric;
     }
     .fighting{
-        background: $fighting
+        background-image: url("../../assets/img/pokedex/fighting.png");
+        background-color: $fighting
     }
     .flying{
-        background: $flying;
+        background-image: url("../../assets/img/pokedex/flying.png");
+        background-color: $flying;
     }
     .grass{
-        background: $grass;
+        background-image: url("../../assets/img/pokedex/grass.png");
+        background-color: $grass;
     }
     .ice{
-        background: $ice;
+        background-image: url("../../assets/img/pokedex/ice.png");
+        background-color: $ice;
     }
     .poison{
-        background: $poison;
+        background-image: url("../../assets/img/pokedex/poison.png");
+        background-color: $poison;
     }
     .rock{
-        background: $rock;
+        background-image: url("../../assets/img/pokedex/rock.png");
+        background-color: $rock;
     }
     .water{
-        background: $water;
+        background-image: url("../../assets/img/pokedex/water.png");
+        background-color: $water;
     }
 }

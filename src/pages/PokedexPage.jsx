@@ -1,4 +1,5 @@
 import React, { useEffect, useLayoutEffect, useMemo, useState } from 'react'
+import { Loading } from '../components/auth/Loading';
 import { Pagination } from '../components/pokedex/Pagination';
 import { PokemonInfo } from '../components/pokedex/PokemonInfo';
 import { PokemonList } from '../components/pokedex/PokemonList';
@@ -78,7 +79,7 @@ export const PokedexPage = () => {
   }, [pokedex])
   
 
-  if(isLoading) return <h1>Cargando...</h1>
+  if(isLoading) return <Loading/>
 
   return (
     <div className="pokedexContainer">
@@ -86,15 +87,18 @@ export const PokedexPage = () => {
       <div className="pokedexContent">
         <Search onSearch={handleSearch} />
       {pokemonList?.length > 0 ? (
-        <>
+        <div className='borders'>
           <div className='filters'>
-            <Sort setSort={setSort}/>
-            <Pagination
-              page={page}
-              lastPage={lastPage}
-              prev={prevPage}
-              next={nextPage}
-            />
+            <div className='filtersContent'>
+              <Sort setSort={setSort}/>
+              <Pagination
+                page={page}
+                lastPage={lastPage}
+                prev={prevPage}
+                next={nextPage}
+              />
+            </div>
+            <div className='bgFilters'></div>
           </div>
           <PokemonList
             pokedex={sortedPokemons}
@@ -103,9 +107,19 @@ export const PokedexPage = () => {
             activePokemon={activePokemon}
             setActivePokemon={setActivePokemon}
           />
-        </>
+          
+        </div>
       ) : (
-        <h1>No se encuentran pokemons...</h1>
+        <div className='borders'>
+        <div className='filters'>
+            <div className='filtersContent'>
+            </div>
+            <div className='bgFilters'></div>
+          </div>
+          <div className='pokemonList'>
+              <p>No se encuentran pokemons...</p>
+          </div>
+        </div>
       )}
       </div>
     </div>

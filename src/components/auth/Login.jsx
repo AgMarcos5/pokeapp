@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAuth, useForm } from '../../hooks';
+import googleIcon from "../../assets/img/auth/google.png"
 
 const formData = {
   email: "",
@@ -21,7 +22,7 @@ const formValidations = {
   ],
 };
 
-export const Login = () => {
+export const Login = ({setAuthState}) => {
 
   const {startLogin, startGoogleLogin} = useAuth()
   const [formSubmited, setFormSubmited] = useState(false);  
@@ -39,45 +40,70 @@ export const Login = () => {
   const onFormSubmit = (event) => {
     event.preventDefault();
     setFormSubmited(true);
-    if(!isFormValid) return;
-    startLogin({ email, password });
+    if(!isFormValid) {
+      setAuthState("invalid")
+    }
+    else {
+      setAuthState("valid")
+      startLogin({ email, password });
+    }
   };
 
   const onGoogleSignIn = () => {
     startGoogleLogin();
   };
 
+  
+  useEffect(() => {
+    setAuthState('valid')
+  }, [isFormValid])
+  
+
 
   return (
     <div>
-        LOGIN 
+    <p>Iniciar sesión</p>
         
         <form onSubmit={onFormSubmit}>
             <input 
+              className={(!!emailValid && formSubmited) ? 'errorInput' : ''}
               type="email"
+              autoComplete="off"
               placeholder="Correo"
               name="email"
               value={email}
               onChange={onInputChange}
             />
+            <div className='error'>
+            {!!emailValid && formSubmited && <span>{emailValid}</span>}
+            </div>
+
             <input 
+              className={(!!passwordValid && formSubmited) ? 'errorInput' : ''}
               type="password"
+              autoComplete="off"
               placeholder="Contraseña"
               name="password"
               value={password}
               onChange={onInputChange}
             />
-            <button  type="submit">
-              Login
-            </button>
-            
-            <button  type="button" onClick={onGoogleSignIn}>
-              Google
-            </button>
+            <div className='error'>
+            {!!passwordValid && formSubmited && <span>{passwordValid}</span>}
+            </div>
+
+            <div className='buttons'>
+              <button  type="submit">
+                Conectar
+              </button>
+              
+              <button  className="google" type="button" onClick={onGoogleSignIn}>
+                <img src={googleIcon} alt="google"/>
+              </button>
+            </div>
+           
 
         </form>
 
-        <hr/>
     </div>
   )
 }

@@ -2,11 +2,11 @@ import { Navbar } from "./Navbar";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "../assets/img/logo.png";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import arrow from "../assets/img/arrow1.png"
 
-export const Header = ({ size, executeScroll }) => {
+export const Header = ({ size, executeScroll, showAuth }) => {
   const [isFirstLoad, setIsFirstLoad] = useState(false);
 
   const prevRoute = useLocation();
@@ -39,13 +39,13 @@ export const Header = ({ size, executeScroll }) => {
                   duration: 0.3,
                 }}
               >
-                <img src={logo} className="logo" alt="pokeapp" />
-                <Navbar />
+                <Link to="/"><img src={logo} className="logo" alt="pokeapp" /></Link>
+                <Navbar showAuth={showAuth}/>
               </motion.div>
             ) : (
               <div className="navbar">
-                <img src={logo} className="logo" alt="pokeapp" />
-                <Navbar />
+                <Link to="/"><img src={logo} className="logo" alt="pokeapp" /></Link>
+                <Navbar showAuth={showAuth}/>
               </div>
             )}
 

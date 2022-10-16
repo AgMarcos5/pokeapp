@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAuth, useForm } from '../../hooks';
 
 const formData = {
@@ -27,7 +27,7 @@ const formValidations = {
 };
 
 
-export const Register = () => {
+export const Register = ({setAuthState}) => {
   const {startRegister} = useAuth()
   const [formSubmited, setFormSubmited] = useState(false);  
 
@@ -46,45 +46,78 @@ export const Register = () => {
   const onFormSubmit = (event) => {
     event.preventDefault();
     setFormSubmited(true);
-    if(!isFormValid) return;
-    startRegister(formState);
+    if(!isFormValid) {
+      setAuthState("invalid")
+    } else {
+      setAuthState("valid")
+      startRegister(formState);
+    }
   };
+
+  useEffect(() => {
+    setAuthState('valid')
+  }, [isFormValid])
+  
 
 
   return (
     <div>
-        REGISTER 
+        <p>Crear cuenta nueva</p>
         
         <form onSubmit={onFormSubmit}>
             <input 
+              className={(!!displayNameValid && formSubmited) ? 'errorInput' : ''}
               type="text"
+              autoComplete="off"
               placeholder="Nombre de usuario"
               name="displayName"
               value={displayName}
               onChange={onInputChange}
             />
+            
+            <div className='error'>
+            {!!displayNameValid && formSubmited && <span>{displayNameValid}</span>}
+            </div>
+
+
             <input 
+              className={(!!emailValid && formSubmited) ? 'errorInput' : ''}
               type="email"
+              autoComplete="off"
               placeholder="Correo"
               name="email"
               value={email}
               onChange={onInputChange}
             />
+            
+            <div className='error'>
+            {!!emailValid && formSubmited && <span>{emailValid}</span>}
+            </div>
+
+
             <input 
+              className={(!!passwordValid && formSubmited) ? 'errorInput' : ''}
               type="password"
+              autoComplete="off"
               placeholder="Contraseña"
               name="password"
               value={password}
               onChange={onInputChange}
             />
-            <button  type="submit">
-              Registrar
-            </button>
+            
+            <div className='error'>
+            {!!passwordValid && formSubmited && <span>{passwordValid}</span>}
+            </div>
+
+            <div className='buttons'>
+              <button  type="submit">
+                Registrar
+              </button>
+            </div>
             
 
         </form>
 
-        <hr/>
     </div>
   )
 }

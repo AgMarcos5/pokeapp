@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Header } from "../components/Header";
 import {motion} from "framer-motion"
@@ -21,16 +21,25 @@ export const IndexPage = () => {
   const refScroll = useRef()
   const executeScroll = () => refScroll.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
 
+  const [authModalVisible, setAuthModalVisible] = useState(false);
+
+  useEffect(() => {
+    if(status === 'authenticated')
+      setAuthModalVisible(false)
+  }, [status])
+  
+
   return (
     <>
       
       {
           (status === 'not-authenticated') && (
-              <AuthModal/>
+              <AuthModal show={authModalVisible} setAuthModalVisible={setAuthModalVisible}/>
           )
       }
-      
-      <Header executeScroll={executeScroll}/>
+      <div className={authModalVisible ? 'modal' : ''}>
+        
+      <Header executeScroll={executeScroll} showAuth={setAuthModalVisible}/>
 
       <div ref={refScroll}></div>
       <motion.div
@@ -102,6 +111,7 @@ export const IndexPage = () => {
       </div>
       </motion.div>
 
+      </div>
     </>
   );
 };
