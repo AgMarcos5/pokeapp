@@ -1,7 +1,15 @@
+import {motion} from 'framer-motion'
 
 import "../../styles/game/pokemonImage.scss"
 
-export const PokemonImage = ({ src, showPokemon = true, captureCombo = null, types = null, status = "" }) => {
+export const PokemonImage = ({ 
+  src, 
+  showPokemon = true, 
+  captureCombo = null, 
+  types = null, 
+  status = "",
+  controls = null 
+}) => {
 
 
   return (
@@ -30,11 +38,23 @@ export const PokemonImage = ({ src, showPokemon = true, captureCombo = null, typ
       <div className="rhomb">
 
       <div className="pokemonImage">
-        <img
+        {controls ? (
+          <motion.img
+          animate={controls}
           src={src}
           className={` ${showPokemon ? "show" : ""} `}
           alt="pokemon"
         />
+        ) :
+        (
+          <img
+          src={src}
+          className={` ${showPokemon ? "show" : ""} `}
+          alt="pokemon"
+        />
+        )
+        }
+        
         <div className="bgFilter"></div>
       </div>
       </div>

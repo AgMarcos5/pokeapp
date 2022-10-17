@@ -9,6 +9,22 @@
     align-items: center;
     margin-top: -140px;
 
+    .gameToast{
+        width: 100%;
+        &.success{
+            background: linear-gradient(90deg, rgb(161, 221, 157) 0%, rgb(43, 205, 168) 100%);
+        }
+        &.error{
+            background: linear-gradient(90deg, rgb(216, 216, 216) 0%, rgb(196, 196, 196) 100%);
+        }
+
+        div {
+            &::first-letter{
+                text-transform: uppercase;
+            }
+        }
+    }
+
 
     .gameContent{
         margin-top: -145px;
@@ -21,6 +37,12 @@
             align-items: center;
             gap: 20px;
             width: 100%;
+
+            &.disable{
+                pointer-events: none;
+                z-index: 0;
+                position: relative;
+            }
 
             input{
                 padding: 20px;
@@ -39,7 +61,8 @@
                 }
 
                 &.disable{
-                    pointer-events: none;box-shadow: 0px 0px 20px 7px rgb(156 225 207 / 0%);
+                    pointer-events: none;
+                    box-shadow: 0px 0px 20px 7px rgb(156 225 207 / 0%);
                     &::placeholder {
                         color: rgb(194, 194, 194);
                       }

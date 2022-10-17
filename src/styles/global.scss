@@ -92,6 +92,13 @@ header{
         img{
             cursor: pointer;
             filter: invert(99%) sepia(86%) saturate(6771%) hue-rotate(322deg) brightness(96%) contrast(94%);
+            transform-origin: top center;
+            animation: swing 3s ease infinite;
+            @keyframes swing {
+                0% { transform: translateY(0); }	
+                50% { transform: translateY(15px); }
+                100% { transform: translateY(0); }
+            }
         }
     }
 }

@@ -15,7 +15,7 @@ const compareStrings = (str1, str2) => {
     return str1.replace(/[^a-zA-Z0-9 ]/g, '').toUpperCase() === str2.replace(/[^a-zA-Z0-9 ]/g, '').toUpperCase()
 }
 
-export const GameForm = ({disable, pokemon, guessPokemon, endGame, nextPokemon}) => {
+export const GameForm = ({disable, throwingBall, pokemon, guessPokemon, endGame, nextPokemon}) => {
 
     const {formState,isFormValid,pokemonName,pokemonNameValid,onInputChange, onResetForm} = useForm(formData,formValidations);
     
@@ -46,7 +46,7 @@ export const GameForm = ({disable, pokemon, guessPokemon, endGame, nextPokemon})
 
   return (
     <>
-        <form onSubmit={onFormSubmit}>
+        <form onSubmit={onFormSubmit} className={throwingBall ? 'disable' : ''}>
             <input 
                 className={formSubmited ? 'disable' : ''}
                 disabled={formSubmited}

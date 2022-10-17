@@ -5,8 +5,10 @@ import { PokemonInfo } from '../components/pokedex/PokemonInfo';
 import { PokemonList } from '../components/pokedex/PokemonList';
 import { Search } from '../components/pokedex/Search';
 import { Sort } from '../components/pokedex/Sort';
-import { getPokemonData } from '../helpers/pokedex';
+
 import { useCounter, usePokedex, useTrainer } from '../hooks'
+
+
 import '../styles/pokedex.scss'
 
 
@@ -82,7 +84,7 @@ export const PokedexPage = () => {
   if(isLoading) return <Loading/>
 
   return (
-    <div className="pokedexContainer">
+    <div className="pokedexContainer">     
       <PokemonInfo pokemon={activePokemon} setActive={setActivePokemon} />
       <div className="pokedexContent">
         <Search onSearch={handleSearch} />

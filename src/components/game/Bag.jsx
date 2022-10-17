@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useTrainer } from '../../hooks'
 import { Item } from './Item';
+import {motion} from 'framer-motion'
 
 import pokeball from "../../assets/img/game/pokeball.png"
 import superball from "../../assets/img/game/superball.png"
@@ -31,7 +32,7 @@ const items = [
   },
 ]
 
-export const Bag = ({disable, throwPokeball, throwBerry}) => {
+export const Bag = ({disable, isPokemonVisible, throwPokeball, throwBerry, controls = null}) => {
 
   const {bag,isSaving} = useTrainer();
 
@@ -58,37 +59,51 @@ export const Bag = ({disable, throwPokeball, throwBerry}) => {
   }
 
   return (
-    <div className={disable ? 'disable bag' : 'bag'}>
-      <div className='bagContent'>
+    <div className={disable ? "disable bag" : "bag"}>
+      <div className="bagContent">
+
         <button className="prev arrow" onClick={() => prevClick()}>
-                      <img src={arrow} alt="anterior"/>
+          <img src={arrow} alt="anterior" />
         </button>
+
         <div className="pokeballsContainer">
-              <div className='disabledItem'>
-                <Item value={listItems[getPrevItem(selectedItem)]} throwItem={throwPokeball}/>
-              </div>
 
-              <div className='selectedItem'>
-              <Item value={listItems[selectedItem]} throwItem={throwPokeball}/>
-              <span>x{bag[listItems[selectedItem].name]}</span>
-              </div>
+          <div className="disabledItem">
+            <Item
+              value={listItems[getPrevItem(selectedItem)]}
+              throwItem={throwPokeball}
+            />
+          </div>
 
-              <div className='disabledItem'>
-              <Item value={listItems[getNextItem(selectedItem)]} throwItem={throwPokeball}/>
-              </div>
+          <div className={isPokemonVisible ? 'selectedItem' : 'selectedItem disablePokeball'}>
+            <motion.div animate={controls}>
+              <Item value={listItems[selectedItem]} throwItem={throwPokeball} />
+            </motion.div>
+            <span>x{bag[listItems[selectedItem].name]}</span>
+          </div>
+
+          <div className="disabledItem">
+            <Item
+              value={listItems[getNextItem(selectedItem)]}
+              throwItem={throwPokeball}
+            />
+          </div>
+
         </div>
         <button className="next arrow" onClick={() => nextClick()}>
-          <img src={arrow} alt="siguiente"/>
+          <img src={arrow} alt="siguiente" />
         </button>
 
-        <div className='selectedItem'>
-          <Item value={{name: "berries", src: berry}} throwItem={throwBerry}/>
+        <div className="selectedItem berry">
+          <Item
+            value={{ name: "berries", src: berry }}
+            throwItem={throwBerry}
+          />
           <span>x{bag.berries}</span>
         </div>
       </div>
 
-
-    <div className='bagBGFilter'></div>
+      <div className="bagBGFilter"></div>
     </div>
-  )
+  );
 }

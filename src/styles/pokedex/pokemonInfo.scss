@@ -12,6 +12,12 @@
 
         img{    
             margin-top: -70px;
+            animation: swing 3s ease-in-out infinite;
+            @keyframes swing {
+                0% { transform: translateY(0); }	
+                50% { transform: translateY(10px); }
+                100% { transform: translateY(0); }
+            }
         }
 
         .subtitle {        
