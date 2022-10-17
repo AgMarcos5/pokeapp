@@ -7,7 +7,7 @@ import '../styles/indexPage.scss'
 import pikachu_2 from '../assets/img/pikachu2.png'
 import pikachu_1 from '../assets/img/pikachu1.png'
 import rotomImg from '../assets/img/rotom.gif'
-import cardPokedex from '../assets/img/pokedexCard.jpg'
+import cardPokedex from '../assets/img/pokedexcard.jpg'
 import cardItems from '../assets/img/cardItems.png'
 import cardPokemons from '../assets/img/cardPokemons.png'
 import { AuthModal } from "../components/auth/AuthModal";
