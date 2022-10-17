@@ -1,6 +1,6 @@
 import React from "react";
 
-import arrow from '../../assets/img/arrow1.png'
+import arrow from '../../assets/img/arrow1.webp'
 
 export const Pagination = ({ page, lastPage, prev, next }) => {
   

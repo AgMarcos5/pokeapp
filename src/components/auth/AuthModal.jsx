@@ -1,16 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Login } from "./Login";
-import { Register } from "./Register";
-
 import { AnimatePresence, motion } from "framer-motion";
 
-import "../../styles/auth.scss";
-import { useAuth } from "../../hooks";
+import { Login } from "./Login";
+import { Register } from "./Register";
 import { Loading } from "./Loading";
+import { useAuth } from "../../hooks";
 
-import gengar from "../../assets/img/auth/gengar.jpg"
-import gengarFalse from "../../assets/img/auth/gengarFalse.jpg"
-import gengarTrue from "../../assets/img/auth/gengarTrue.jpg"
+import "../../styles/auth.scss";
+
+import gengar from "../../assets/img/auth/gengar.webp"
+import gengarFalse from "../../assets/img/auth/gengarFalse.webp"
+import gengarTrue from "../../assets/img/auth/gengarTrue.webp"
 
 const gengarState = {
   "initial" : gengar,

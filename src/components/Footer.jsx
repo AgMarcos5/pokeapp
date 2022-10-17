@@ -1,4 +1,4 @@
-import arrow from "../assets/img/arrow1.png"
+import arrow from "../assets/img/arrow1.webp"
 
 export const Footer = () => {
 

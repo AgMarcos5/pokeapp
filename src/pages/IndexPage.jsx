@@ -1,18 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { Header } from "../components/Header";
 import {motion} from "framer-motion"
 
-import '../styles/indexPage.scss'
-import pikachu_2 from '../assets/img/pikachu2.png'
-import pikachu_1 from '../assets/img/pikachu1.png'
-import rotomImg from '../assets/img/rotom.gif'
-import cardPokedex from '../assets/img/pokedexcard.jpg'
-import cardItems from '../assets/img/cardItems.png'
-import cardPokemons from '../assets/img/cardPokemons.png'
+import { Header } from "../components/Header";
 import { AuthModal } from "../components/auth/AuthModal";
-import { useAuth } from "../hooks";
 import { Footer } from "../components/Footer";
+import { useAuth } from "../hooks";
+
+import '../styles/indexPage.scss'
+
+// IMAGES
+import pikachu_2 from '../assets/img/pikachu2.webp'
+import pikachu_1 from '../assets/img/pikachu1.webp'
+import rotomImg from '../assets/img/rotom.gif'
+import cardPokedex from '../assets/img/pokedexcard.webp'
+import cardItems from '../assets/img/cardItems.webp'
+import cardPokemons from '../assets/img/cardPokemons.webp'
+
 
 export const IndexPage = () => {
   

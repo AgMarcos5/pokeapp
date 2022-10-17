@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 
 export const Search = ({onSearch}) => {
 

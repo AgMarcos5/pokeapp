@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import toast from 'react-hot-toast';
+import { useAnimationControls } from "framer-motion";
 
 import { Bag } from "../components/game/Bag";
 import { GameForm } from "../components/game/GameForm";
 import { PokemonImage } from "../components/game/PokemonImage";
+import { CustomToaster } from "../components/game/CustomToaster";
+import { Loading } from "../components/auth/Loading";
+import { pokeballAnimation, pokemonAnimation } from "../components/game/animations";
+
 import { useCounter, useTrainer } from "../hooks";
 import { calcExperience, getLoot, getRandomPokemon } from "../helpers";
 
 import "../styles/game.scss"
-import { Message } from "../components/game/Message";
-import { CustomToaster } from "../components/game/CustomToaster";
-import { motion, useAnimationControls } from "framer-motion";
-import { pokeballAnimation, pokemonAnimation } from "../components/game/animations";
-import { Loading } from "../components/auth/Loading";
 
 
 

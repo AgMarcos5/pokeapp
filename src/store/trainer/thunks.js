@@ -2,16 +2,6 @@ import { collection, doc, getDocs, setDoc } from "firebase/firestore/lite";
 import { FirebaseDB } from "../../firebase/config";
 import { onLoadTrainer, startSavingTrainer } from "./trainerSlice";
 
-/*
-export const startSaveTrainerInfo = () => {
-  return async (dispatch, getState) => {
-    const {uid} = getState().auth.user;
-    const {pokemons, bag} = getState().trainer;
-    const docRef = doc(FirebaseDB, `${uid}/info`);
-    await setDoc(docRef, {pokemons,bag}, {merge:true});
-  }
-}    
-*/
 
 // docName: pokemons - bag 
 export const startSaveTrainerInfo = (docName) => {
@@ -39,17 +29,6 @@ export const startNewTrainerInfo = () => {
 
   }
 }
-/*
-export const startNewTrainerInfo = () => {
-  return async (dispatch, getState) => {
-    const {uid} = getState().auth.user;
-    const {pokemons, bag} = getState().trainer;
-    const newDoc = doc( collection( FirebaseDB, `${uid}` ), "info" )
-    await setDoc( newDoc, {pokemons,bag} )
-  }
-}
-*/
-
 
 export const startLoadingTrainerInfo = () => {
   return async( dispatch, getState) => {
@@ -70,10 +49,3 @@ export const startLoadingTrainerInfo = () => {
     }
   }
 };
-
-/*
-const collectionRef = collection( FirebaseDB, `${uid}/notes/note` );
-const { docs } = await getDocs( collectionRef )
-
-const notes = docs.map( doc => ({ id: doc.id, ...doc.data() }) )
-*/

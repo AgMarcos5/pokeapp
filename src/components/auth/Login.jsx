@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth, useForm } from '../../hooks';
-import googleIcon from "../../assets/img/auth/google.png"
+
+import googleIcon from "../../assets/img/auth/google.webp"
 
 const formData = {
   email: "",

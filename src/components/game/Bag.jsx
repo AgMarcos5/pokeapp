@@ -8,8 +8,7 @@ import superball from "../../assets/img/game/superball.png"
 import ultraball from "../../assets/img/game/ultraball.png"
 import masterball from "../../assets/img/game/masterball.png"
 import berry from "../../assets/img/game/berry.png"
-
-import arrow from "../../assets/img/arrow1.png"
+import arrow from "../../assets/img/arrow1.webp"
 
 import "../../styles/bag.scss"
 

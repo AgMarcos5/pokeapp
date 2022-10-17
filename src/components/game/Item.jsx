@@ -1,6 +1,3 @@
-import React from 'react'
-import { useTrainer } from '../../hooks'
-
 
 export const Item = ({value,throwItem}) => {
 

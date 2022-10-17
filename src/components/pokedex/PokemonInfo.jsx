@@ -1,9 +1,11 @@
 import React from 'react'
+import { AnimatePresence, motion } from "framer-motion";
+
 import { PokemonImage } from '../game/PokemonImage';
-import rotomdex from "../../assets/img/pokedex/rotomdex.png"
 
 import "../../styles/pokedex/pokemonInfo.scss"
-import { AnimatePresence, motion } from "framer-motion";
+import rotomdex from "../../assets/img/pokedex/rotomdex.webp"
+
 
 const statName = ["HP","ATK","DEF","SpA","SpD","SPD"]
 

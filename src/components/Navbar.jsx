@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth'
-import { Login } from './auth/Login';
-import { Register } from './auth/Register';
 
 import "../styles/navbar.scss"
 

@@ -8,19 +8,15 @@ import { Sort } from '../components/pokedex/Sort';
 
 import { useCounter, usePokedex, useTrainer } from '../hooks'
 
-
 import '../styles/pokedex.scss'
 
-
 const sortPokemons = ["id","captured"]
-
 
 export const PokedexPage = () => {
 
   
   const {isLoading,pokedex,activePokemon, setActivePokemon, startPokedex,updatePokedex} = usePokedex();
   const {pokemons} = useTrainer()
-  
   const [pokemonList, setPokemonList] = useState([])
   
 
@@ -42,7 +38,6 @@ export const PokedexPage = () => {
 
   
   // ORDENAR
-
   const compareStatus = (a,b) => {
     const statusValue = (val) => {
       switch(val) {

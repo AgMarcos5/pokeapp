@@ -1,7 +1,4 @@
-import React, { useState } from 'react'
 import { PokemonItem } from './PokemonItem'
-
-
 
 export const PokemonList = ({pokedex, page, maxPokemons, activePokemon, setActivePokemon}) => {
 
