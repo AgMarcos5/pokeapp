@@ -38,6 +38,11 @@ Para atrapar un pokemon se puede lanzar una pokeball o una baya para facilitar l
 > Al descubrir el pokemon oculto, se habilita la mochila del entrenador con sus items
 
 
+
+https://user-images.githubusercontent.com/74142173/196190514-3f7d0fc8-edbd-43c9-986a-ed5a3b582e55.mp4
+
+
+
 * Datos de los pokemons obtenidos de la API de [PokeApi](https://pokeapi.co) utilizando Axios.
 * Estado del juego mantenido en el LocalStorage.
 * El inventario y los pokemon capturados se persisten con Firestore.
