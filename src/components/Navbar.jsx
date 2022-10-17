@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth'
 import { Login } from './auth/Login';
@@ -9,10 +9,34 @@ import "../styles/navbar.scss"
 export const Navbar = ({showAuth}) => {
     const {status, user, startLogout} = useAuth();
     const [showMenu, setShowMenu] = useState(false)
+    const [showProfile, setShowProfile] = useState(false)
 
     const onClickMenu = () => {
         setShowMenu(!showMenu)
     }
+
+    const onClickProfile = () => {
+        setShowProfile(!showProfile)
+    }
+
+    const onLogout = () => {
+        setShowProfile(false)
+        startLogout()
+    }
+
+    const ref = useRef()
+
+    useEffect(() => {
+        const checkIfClickedOutside = e => {
+            if (showProfile && ref.current && !ref.current.contains(e.target)) {
+                setShowProfile(false)
+            }
+        }
+        document.addEventListener("mousedown", checkIfClickedOutside)
+        return () => {
+        document.removeEventListener("mousedown", checkIfClickedOutside)
+        }
+    }, [showProfile])
 
   return (
     <>
@@ -29,13 +53,15 @@ export const Navbar = ({showAuth}) => {
             {
                 (status === 'authenticated')
                 ? (
-                    <>
-                        <Link to="/profile">
-                            <div className='user'>
-                                {user.displayName}        
+                    <div className='userContainer'  ref={ref}>
+                            <div className='user' onClick={onClickProfile}>
+                                <span>{user.displayName}</span>     
                             </div>
-                        </Link>
-                    </>
+
+                            <div className={showProfile ? 'show profileMenu' : 'profileMenu'}>
+                                <button onClick={onLogout}>Desconectar</button>
+                            </div>
+                    </div>
                 ):(
                 <>
                     <li className="user" onClick={() => showAuth(true)}>Comenzar</li>

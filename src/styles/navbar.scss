@@ -25,7 +25,64 @@ nav{
                 outline: 2px solid $yellow;
             }
         }
+
+       
     }
+
+    .userContainer{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+
+        .profileMenu{
+            position: absolute;
+            bottom: -60px;
+            padding: 10px;
+            background: $yellow;
+            width: 100%;
+            text-align: center;
+            border-radius: 5px;
+            
+            opacity: 0;
+            pointer-events: none;
+            transition: .3s;
+            transform: translateY(-10px);
+
+            &.show{
+                opacity: 1;
+                pointer-events: initial;
+                transform: translateY(0);
+            }
+
+            &::before{
+                content: "";
+                position: absolute;
+                top: -32px;
+                width: 0;
+                height: 0;
+                border-color: transparent transparent $yellow transparent;
+                border-style: solid;
+                border-width: 22px 20px 22px 20px;
+                z-index: -1;
+                left: 70px;
+            }
+
+            button{
+                background: transparent;
+                border: 0;
+                cursor: pointer;
+                font-weight: 600;
+
+                &:hover{
+                    border-bottom: 2px solid #2b2825;
+                }
+            }
+        }
+    }
+
+
     .user{
         cursor: pointer;
         background: $yellow;
@@ -41,7 +98,13 @@ nav{
             color: $yellow;
             background: rgba(20, 20, 20, 0.35);
             backdrop-filter: blur(5px);
-            
+        }
+        span{
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 15px;
         }
     }
 

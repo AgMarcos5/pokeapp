@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Login } from "./Login";
 import { Register } from "./Register";
 
@@ -47,6 +47,22 @@ export const AuthModal = ({show, setAuthModalVisible}) => {
     setAuthModalVisible(false)
   }
 
+  
+  
+  const ref = useRef()
+
+  useEffect(() => {
+      const checkIfClickedOutside = e => {
+          if (show && ref.current && !ref.current.contains(e.target)) {
+            setAuthModalVisible(false)
+          }
+      }
+      document.addEventListener("mousedown", checkIfClickedOutside)
+      return () => {
+      document.removeEventListener("mousedown", checkIfClickedOutside)
+      }
+  }, [show])
+
   return (
     <AnimatePresence>
       {show && (
@@ -59,7 +75,9 @@ export const AuthModal = ({show, setAuthModalVisible}) => {
       
     <div className="authBg">
     
-      <motion.div className="authContainer"
+      <motion.div 
+        ref={ref}
+        className="authContainer"
         key="modal"
         initial={{ y: 100 }}
         animate={{ y: 0 }}
