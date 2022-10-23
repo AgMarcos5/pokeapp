@@ -13,3 +13,12 @@
     }
 
 }
+
+
+@media (max-width:500px) {
+    .containerBg{
+        .container{
+            width: 90%;
+        }
+    }
+}

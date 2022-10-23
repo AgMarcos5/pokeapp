@@ -2,6 +2,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth'
 
+import menuIcon from "../assets/img/menu.png"
+import closeMenuIcon from "../assets/img/close.png"
+
 import "../styles/navbar.scss"
 
 export const Navbar = ({showAuth}) => {
@@ -39,11 +42,16 @@ export const Navbar = ({showAuth}) => {
   return (
     <>
     <nav>
-        <div className='menuButton' onClick={onClickMenu}>M</div>
+        <div className='menuButton' onClick={onClickMenu}>
+            <img src={menuIcon} alt="menu"/>
+        </div>
 
         <div className={showMenu ? 'show menuMobile' : 'menuMobile'}>
 
         <ul >
+            <li className='menuButton' onClick={onClickMenu}>
+                <img src={closeMenuIcon} alt="close"/>
+            </li>
             <li><Link to="/">Inicio</Link></li>
             <li><Link to="/play">Juega</Link></li>
             <li><Link to="/pokedex">Pokedex</Link></li>

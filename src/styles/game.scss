@@ -106,3 +106,24 @@
         }
     }
 }
+
+
+
+@media (max-width:500px) {
+    .gameContainer {
+        .imageContainer {
+            transform: scale(0.7);
+        }
+
+        .gameContent{
+            form {
+                input {
+                    &::placeholder{
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+    }
+
+}

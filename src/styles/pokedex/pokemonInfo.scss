@@ -226,3 +226,65 @@
         background-color: $water;
     }
 }
+
+// RESPONSIVE
+
+@media (max-width:1100px) {
+    
+    .pokemonInfoContainer {
+        height: auto;
+
+        .logo{
+            top: 0;
+
+            .subtitle{
+                font-size: calc(2em + 3.5vw);
+            }
+        }
+
+        >div{
+            display: flex;
+            flex-direction: column-reverse;
+        }
+        .imageContainer {
+            top: -70px;
+        }
+
+        .pokemonInfo {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 0;
+            margin: 20px;
+        }
+    }
+
+}
+
+@media (max-width:500px) {
+    
+    .pokemonInfoContainer {
+        .logo img{
+            width: 100%;
+            max-width: 363px;
+        }
+        .imageContainer {
+            transform: scale(0.7);
+            top: 0;
+        }
+    }
+
+}
+
+@media (max-width:310px) {
+    
+    .pokemonInfoContainer {                
+        .pokemonInfo .stats{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    }
+
+}

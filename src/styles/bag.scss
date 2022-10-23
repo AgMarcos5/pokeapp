@@ -39,9 +39,15 @@
 
     .bagContent{
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         justify-content: center;
         z-index: 1;
+
+        .balls{
+            display: flex;
+            align-items: center;
+        }
     }
 
     .arrow{
@@ -125,6 +131,7 @@
 
         button{
             cursor: pointer;
+            min-width: 90px;
         }
 
         span{

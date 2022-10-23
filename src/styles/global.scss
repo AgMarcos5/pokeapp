@@ -139,3 +139,30 @@ footer{
         color: #ff2f00;
     }
 }
+
+
+@media (max-width:900px) {
+
+    header {
+        .logo{
+            display: block;
+        }
+
+        .navbar{
+            justify-content: space-between;
+        }
+    }
+
+}
+
+
+@media (max-width:500px) {
+    
+    header {
+        .navbar{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    }
+}

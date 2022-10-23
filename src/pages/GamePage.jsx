@@ -13,6 +13,7 @@ import { useCounter, useTrainer } from "../hooks";
 import { calcExperience, getLoot, getRandomPokemon } from "../helpers";
 
 import "../styles/game.scss"
+import { useViewport } from "../hooks/useViewport";
 
 
 
@@ -96,11 +97,18 @@ export const GamePage = () => {
     }
   }
 
+  const {width} = useViewport()
 
   const sequence = async () => {
-    await pokeballControls.start(pokeballAnimation["lanzar"])
-    await pokemonControls.start(pokemonAnimation["capturar"])
-    await pokeballControls.start(pokeballAnimation["girar"])
+    if(width<475){
+      await pokeballControls.start(pokeballAnimation["lanzarMobile"])
+      await pokemonControls.start(pokemonAnimation["capturar"])
+      await pokeballControls.start(pokeballAnimation["girarMobile"])
+    } else{ 
+      await pokeballControls.start(pokeballAnimation["lanzar"])
+      await pokemonControls.start(pokemonAnimation["capturar"])
+      await pokeballControls.start(pokeballAnimation["girar"])
+    }
   }
 
   const handleThrowPokeball = (ballName) => {
