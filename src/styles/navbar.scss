@@ -133,11 +133,34 @@ nav{
                 img{
                     width: 65%;
                 }
+                
+                outline: 2px solid transparent;
+                transition: .5s;
+
+                &:hover{
+                    outline: 2px solid $yellow;
+                }
             }
 
             .menuMobile{
                 position: absolute;
                 z-index: -1;
+
+                .menuButton{
+                    img{
+                        width: 65%;
+                    }
+                    
+                    &:hover{
+                        outline: 2px solid $yellow;
+                        color: $yellow;
+                        background: rgba(20, 20, 20, 0.55);
+                        backdrop-filter: blur(5px);
+                        img{
+                            filter: invert(94%) sepia(43%) saturate(5022%) hue-rotate(324deg) brightness(102%) contrast(87%);
+                        }
+                    }
+                }
 
                 ul{
                     display: flex;
@@ -156,7 +179,7 @@ nav{
                 top: 0;
                 background: linear-gradient(0deg, rgba(0,0,0,0) 18%, rgb(30 29 29) 100%);
                 margin: 0;
-                padding: 33px 0;
+                padding: 40px 0;
                 opacity: 0;
                 transition: opacity .5s;
 

@@ -18,6 +18,7 @@ export const Header = ({ size, executeScroll, showAuth }) => {
   return (
     <motion.div
       key="modal"
+      className="headerContainer"
       initial={{ height: size === "small" ? 500 : 500 }}
       animate={{ height: size === "small" ? 500 : 910 }}
       exit={{ height: size === "small" ? 500 : 500 }}
