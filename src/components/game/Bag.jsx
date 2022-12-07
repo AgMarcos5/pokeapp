@@ -10,7 +10,11 @@ import masterball from "../../assets/img/game/masterball.png"
 import berry from "../../assets/img/game/berry.png"
 import arrow from "../../assets/img/arrow1.webp"
 
+
+import sound_button from "../../assets/sounds/button.mp3"
+
 import "../../styles/bag.scss"
+import { playAudio } from '../../helpers/playAudio';
 
 const items = [
   {
@@ -41,10 +45,12 @@ export const Bag = ({disable, isPokemonVisible, throwPokeball, throwBerry, contr
 
   const prevClick = () => {
     setSelectedItem(getPrevItem(selectedItem))
+    playAudio(sound_button)
   }
 
   const nextClick = () => {
     setSelectedItem(getNextItem(selectedItem))
+    playAudio(sound_button)
   }
 
   const getPrevItem = (index) => {

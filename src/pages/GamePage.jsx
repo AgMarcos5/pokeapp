@@ -17,6 +17,12 @@ import { useViewport } from "../hooks/useViewport";
 import { Loot } from "../components/game/Loot";
 
 
+import sound_capture from "../assets/sounds/capture1.mp3"
+import sound_captureFail from "../assets/sounds/capture2.mp3"
+import sound_captureSuccess from "../assets/sounds/capture3.mp3"
+
+import { playAudio } from "../helpers/playAudio";
+
 
 
 export const GamePage = () => {
@@ -125,6 +131,7 @@ export const GamePage = () => {
 
       // animacion lanzar pokeball
       sequence();
+      playAudio(sound_capture);
       
       // deshabilitar items
       setThrowingBall(true)
@@ -136,11 +143,13 @@ export const GamePage = () => {
           capturePokemon(pokemon);
           localStorage.removeItem('pkmGame');
           toast.success(`Capturaste a ${pokemon.name}!`)
+          playAudio(sound_captureSuccess)
         }
         else {
           pokemonControls.start(pokemonAnimation["salir"])
           pokeballControls.start(pokeballAnimation["fin"])
           toast.error(`${pokemon.name} escapó!`)
+          playAudio(sound_captureFail)
         }
         setThrowingBall(false)
         // animacion fin
