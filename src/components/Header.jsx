@@ -1,5 +1,5 @@
 import { Navbar } from "./Navbar";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform  } from "framer-motion";
 import logo from "../assets/img/logo.png";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -7,6 +7,11 @@ import { Link, useLocation } from "react-router-dom";
 import arrow from "../assets/img/arrow1.png"
 
 export const Header = ({ size, executeScroll, showAuth }) => {
+
+  // PARALLAX
+  const { scrollY } = useScroll()
+  const y = useTransform(scrollY, [0, 950], [0, 200])
+
   const [isFirstLoad, setIsFirstLoad] = useState(false);
 
   const prevRoute = useLocation();
@@ -25,7 +30,11 @@ export const Header = ({ size, executeScroll, showAuth }) => {
       transition={{ type: "spring", stiffness: 30 }}
     >
       <header className={size}>
-        <div className="bg"></div>
+
+        <motion.div style={{ y }}>
+          <div className="bg"></div>
+        </motion.div>
+
         <div className="container">
           <div className="headerPosition">
             {isFirstLoad ? (

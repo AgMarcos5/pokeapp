@@ -1,28 +1,29 @@
 {
     "0" : {},
     "2" : {
-        "pokeballs" : 1
+        "pokeballs" : 5,
+        "berries" : 4
     },
     "5" : {
-        "pokeballs" : 3,
+        "pokeballs" : 10,
         "berries" : 4
     }, 
     "10" : {
-        "pokeballs": 5,
-        "superballs": 3,
-        "berries": 4
+        "pokeballs": 10,
+        "superballs": 5,
+        "berries": 6
     },
     "15" : {
-        "pokeballs": 7,
-        "superballs": 5,
-        "ultraballs": 2,
+        "pokeballs": 10,
+        "superballs": 7,
+        "ultraballs": 5,
         "berries": 6
     },
     "20" : {
-        "pokeballs": 7,
-        "superballs": 5,
-        "ultraballs": 2,
-        "masterball": 1,
-        "berries": 6
+        "pokeballs": 10,
+        "superballs": 10,
+        "ultraballs": 5,
+        "masterballs": 1,
+        "berries": 10
     }
 }

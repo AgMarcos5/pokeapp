@@ -14,6 +14,7 @@ import { calcExperience, getLoot, getRandomPokemon } from "../helpers";
 
 import "../styles/game.scss"
 import { useViewport } from "../hooks/useViewport";
+import { Loot } from "../components/game/Loot";
 
 
 
@@ -39,6 +40,9 @@ export const GamePage = () => {
   // ANIMACION CAPTURA POKEMON
   const pokemonControls = useAnimationControls()
   const pokeballControls = useAnimationControls()
+
+  // LOOT
+  const [loot,setLoot] = useState({});
 
 
   useEffect(() => {
@@ -92,10 +96,12 @@ export const GamePage = () => {
     if(captureCombo > 0)
     {
       const loot = getLoot(captureCombo);
+      setLoot(loot);
       updateBag(loot);
       resetCaptureCombo();
     }
   }
+
 
   const {width} = useViewport()
 
@@ -160,6 +166,7 @@ export const GamePage = () => {
         <Loading/>
       ) : (
         <>
+          <Loot items={loot} setLoot={setLoot}/>
           <CustomToaster/>
           <PokemonImage controls={pokemonControls} showPokemon={showPokemon} src={pokemon.image} captureCombo={captureCombo}/>
           

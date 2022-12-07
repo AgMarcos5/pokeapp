@@ -25,6 +25,21 @@
         }
     }
 
+    .lootContainer{
+        position: absolute;    
+        bottom: 50px;
+        left: 20px;
+        z-index: 2;
+        
+        .toastItem{                    
+            display: flex;
+            align-items: center;
+            img{
+                width: 60px;
+            }
+        }
+    }
+
 
     .gameContent{
         margin-top: -145px;
